@@ -27,6 +27,8 @@ public class FragmentTouringList extends ListFragment {
 	        "10"
 	    };
 	
+	// trololo lolo lololo
+	
 	@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
 		
