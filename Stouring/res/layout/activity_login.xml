@@ -1,0 +1,86 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/tourargent_wide_detail"
+    tools:context="${packageName}.${activityClass}" >
+
+    <LinearLayout
+	   android:orientation="vertical"
+	   android:layout_width="fill_parent"
+	   android:layout_height="fill_parent" >
+  
+        <LinearLayout
+			android:orientation="vertical"
+			android:layout_weight="50"
+			android:gravity="bottom"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content" >
+    
+			<TextView
+				android:id="@+id/textApp"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:gravity="bottom|right"
+				android:layout_marginRight="35dip"
+				android:textSize="32sp"
+				android:textColor="#ffffff"
+				android:text="@string/app_name" />
+	
+			<TextView
+				android:id="@+id/textDesc"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:gravity="bottom|right"
+				android:layout_marginRight="35dip"
+				android:textSize="22sp"
+				android:textColor="#ffffff"
+				android:text="@string/app_desc" />
+
+		</LinearLayout>
+
+
+		<LinearLayout
+			android:orientation="vertical"
+			android:layout_weight="50"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content" >
+
+			<Button
+				android:id="@+id/buttonstouring"
+				android:layout_width="250dp"
+				android:layout_height="60dp"
+				android:layout_gravity="center"
+				android:layout_marginBottom="17dip"
+				android:layout_marginTop="150dip"
+				android:background="@drawable/stouringlogin" />
+			
+			<Button
+				android:id="@+id/buttonfacebook"
+				android:layout_width="250dp"
+				android:layout_height="60dp"
+				android:layout_gravity="center"
+				android:layout_marginBottom="17dip"
+				android:background="@drawable/facebooklogin" />
+			
+			<Button
+				android:id="@+id/buttontwitter"
+				android:layout_width="250dp"
+				android:layout_height="60dp"
+				android:layout_gravity="center"
+				android:layout_marginBottom="17dip"
+				android:background="@drawable/twitterlogin" />
+			
+			<Button
+				android:id="@+id/buttongoogle"
+				android:layout_width="250dp"
+				android:layout_height="60dp"
+				android:layout_gravity="center"
+				android:layout_marginBottom="17dip"
+				android:background="@drawable/googlelogin" />
+
+		</LinearLayout>
+
+	</LinearLayout>
+
+</RelativeLayout>
