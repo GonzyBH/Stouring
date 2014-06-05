@@ -43,7 +43,7 @@ public class FragmentTouringList extends ListFragment {
 	        
 	        String[] from = {"txt","cur"};
 	        
-	        int[] to = {R.id.txt,R.id.cur};
+	        int[] to = {R.id.firstrow,R.id.secondrow};
 	        
 	        SimpleAdapter adapter = new SimpleAdapter(getActivity().getBaseContext(), aList, R.layout.row_activity_fragment_touringlist, from, to);
 	        

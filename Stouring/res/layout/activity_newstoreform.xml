@@ -27,7 +27,7 @@
         <!-- Footer Start -->
        	<LinearLayout 
 			    android:layout_width="fill_parent"
-			    android:layout_height="60dip"
+			    android:layout_height="40dip"
 			    android:background="@layout/footer_gradient"
 			    android:layout_below="@+id/form">        
 		</LinearLayout>
