@@ -25,66 +25,111 @@
         <!--  Header Ends -->
  
         <!-- Footer Start -->
-       	<LinearLayout android:id="@+id/footer"
+       	<LinearLayout 
 			    android:layout_width="fill_parent"
 			    android:layout_height="60dip"
 			    android:background="@layout/footer_gradient"
-			    android:layout_alignParentBottom="true">        
+			    android:layout_below="@+id/form">        
 		</LinearLayout>
         <!-- Footer Ends -->
  
         <!-- Login Form -->
         <LinearLayout
-          android:orientation="vertical"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:padding="10dip"
-          android:layout_below="@id/header">
+      	android:id="@+id/form"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dip"
+        android:layout_below="@id/header">
                 
            <TextView android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textColor="#372c24"
                 android:gravity="center"
-                android:text="Connexion"/>
-          <!--  Email Label -->
+                android:text="Ajoutez votre nouveau commerce"/>
+           
+           
+          <!--  Name Label -->
           <TextView android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dip"
+                android:layout_marginTop="2dip"
                 android:textColor="#372c24"
-                android:text="Email"/>
+                android:text="Nom"/>
           <EditText android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dip"
+                android:layout_marginTop="2dip"
                 android:layout_marginBottom="20dip"
                 android:singleLine="true"/>
-          <!--  Password Label -->
+          
+          
+          <!-- 	Store type spinner label -->
           <TextView android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textColor="#372c24"
-                android:text="Mot de Passe"/>
-          <EditText android:layout_width="fill_parent"
+                android:text="Type de commerce"/>
+          <Spinner
+		        android:id="@+id/spinner1"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:entries="@array/storetype_arrays"
+		        android:prompt="@string/storetype_prompt" />
+          
+          
+          <!--  Web Label -->
+          <TextView android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dip"
-                android:singleLine="true"
-                android:password="true"/>
+                android:textColor="#372c24"
+                android:text="Adresse Web"/>
+          <EditText android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dip"
+                android:singleLine="true"/>
+          
+          
+          <!--  Location Label -->
+          <TextView android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dip"
+                android:textColor="#372c24"
+                android:text="Adresse"/>
+          <EditText android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dip"
+                android:singleLine="true"/>
+          
+          <!--  City Label -->
+          <TextView android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dip"
+                android:textColor="#372c24"
+                android:text="Ville"/>
+          <EditText android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dip"
+                android:singleLine="true"/>
+          
+          
           <!-- Login button -->
           <Button android:id="@+id/btnLogin"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dip"
-                android:text="Connexion"/>
+                android:text="Validez"/>
+          
+          
           <!-- Link to Registration Screen -->
           <TextView android:id="@+id/link_to_register"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dip"
                 android:layout_marginBottom="40dip"
-                android:text="Nouveau sur Stouring? Créez un nouveau compte ici !"
+                android:text="Vous avez déjà un compte ? Connectez vous ici"
                 android:gravity="center"
                 android:textSize="20dip"
                 android:textColor="#0b84aa"/>
  
-</LinearLayout>
+		</LinearLayout>
         <!-- Login Form Ends -->
  
   </RelativeLayout>
