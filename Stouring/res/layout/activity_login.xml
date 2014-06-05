@@ -12,12 +12,14 @@
   
         <LinearLayout
 			android:orientation="vertical"
-			android:layout_weight="50"
+			android:layout_weight="60"
 			android:gravity="bottom"
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content" >
+
+            
     
-			<TextView
+			<!-- <TextView
 				android:id="@+id/textApp"
 				android:layout_width="fill_parent"
 				android:layout_height="wrap_content"
@@ -35,16 +37,24 @@
 				android:layout_marginRight="35dip"
 				android:textSize="22sp"
 				android:textColor="#ffffff"
-				android:text="@string/app_desc" />
+				android:text="@string/app_desc" />  -->
 
 		</LinearLayout>
 
 
 		<LinearLayout
 			android:orientation="vertical"
-			android:layout_weight="50"
+			android:layout_weight="40"
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content" >
+			
+		    <ImageView
+                android:id="@+id/welcomeiamge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/hello_world"
+                android:layout_gravity="center"
+                android:src="@drawable/logo_welcome" />
 
 			<Button
 				android:id="@+id/buttonstouring"
