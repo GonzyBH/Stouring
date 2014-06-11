@@ -9,51 +9,37 @@ import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.SimpleAdapter;
 
 public class FragmentTouringList extends ListFragment {
 	
 	String[] countries = {"Belgique", "France", "Allemagne", "Italie", "Russie", "Portugal", "Hollande", "Espagne", "Suisse", "Luxembourg"};
-	String[] note = new String[]{
-	        "1",
-	        "2",
-	        "3",
-	        "4",
-	        "5",
-	        "6",
-	        "7",
-	        "8",
-	        "9",
-	        "10"
-	    };
+	String[] note = new String[]{"1","2","3","4","5","6","7","8","9","10"};
 	
 	// OULALADIDON
 	
 	@Override
-		public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
-		
-		 List<HashMap<String,String>> aList = new ArrayList<HashMap<String,String>>();
-		 
-	        for(int i=0;i<10;i++){
-	            HashMap<String, String> hm = new HashMap<String,String>();
-	            hm.put("txt", "Pays : " + countries[i]);
-	            hm.put("cur","Note : " + note[i]);
-	            aList.add(hm);
-	        }	       
-	        
-	        String[] from = {"txt","cur"};
-	        
-	        int[] to = {R.id.firstrow,R.id.secondrow};
-	        
-	        SimpleAdapter adapter = new SimpleAdapter(getActivity().getBaseContext(), aList, R.layout.row_activity_fragment_touringlist, from, to);
-	        
-	        setListAdapter(adapter);
-	 
-	        return super.onCreateView(inflater, container, savedInstanceState);
-		
-		//return inflater.inflate(R.layout.activity_fragment_touringlist, container, false);
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		return inflater.inflate(R.layout.activity_fragment_touringlist, container, false);
 	}
 
+	@Override
+	public void onActivityCreated(Bundle savedInstanceState) {
+		super.onActivityCreated(savedInstanceState);
+		
+		List<Integer> items = new ArrayList<Integer>();
+		items.add(R.string.default_lorem);
+		items.add(R.string.default_lorem);
+		items.add(R.string.default_lorem);
+		items.add(R.string.default_lorem);
+
+		CustomStouringListFragmentAdapter adapter = new CustomStouringListFragmentAdapter(getActivity());
+		adapter.bind(items);
+		setListAdapter(adapter);
+
+	}
 
 
 	/*@Override

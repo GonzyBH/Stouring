@@ -9,6 +9,7 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="app_desc">Smart touring and shopping</string>
+    <string name="default_lorem">Lorem ipsum dolor sit amet</string>
     
     
     <string name="storetype_prompt">Choisissez le type de commerce</string>
