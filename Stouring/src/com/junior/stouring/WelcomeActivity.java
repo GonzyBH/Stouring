@@ -40,3 +40,4 @@ public class WelcomeActivity extends Activity {
 	    timer.start();
 	}
 }
+

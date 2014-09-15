@@ -16,3 +16,4 @@ public class NewStoreFormActivity extends Activity {
 	    setContentView(R.layout.activity_newstoreform);
 	}
 }
+
