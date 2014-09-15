@@ -4,12 +4,21 @@ package com.junior.stouring;
 public class TouringPlace{
 	
 	private String Name;
-	private long Position;
+	private float Mark;
 	private int Image;
 
-public TouringPlace(String pName, long pPosition, int pImage) {
+public TouringPlace(String pName, float pMark, int pImage) {
 	this.Name = pName;
-	this.Position = pPosition;
+	this.Mark = pMark;
 	this.Image = pImage;
 	}
+
+public String getName(){
+	return Name;
+	}
+
+public float getMark(){
+	return Mark;
+	}
+
 }

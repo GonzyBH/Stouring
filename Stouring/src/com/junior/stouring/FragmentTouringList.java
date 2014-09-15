@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
@@ -14,8 +15,9 @@ import android.widget.SimpleAdapter;
 
 public class FragmentTouringList extends ListFragment {
 	
-	String[] countries = {"Belgique", "France", "Allemagne", "Italie", "Russie", "Portugal", "Hollande", "Espagne", "Suisse", "Luxembourg"};
-	String[] note = new String[]{"1","2","3","4","5","6","7","8","9","10"};
+	private List<TouringPlace> mItems;
+	/*String[] countries = {"Belgique", "France", "Allemagne", "Italie", "Russie", "Portugal", "Hollande", "Espagne", "Suisse", "Luxembourg"};
+	String[] note = new String[]{"1","2","3","4","5","6","7","8","9","10"};*/
 	
 	// OULALADIDON
 	
@@ -29,29 +31,25 @@ public class FragmentTouringList extends ListFragment {
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 		
-		List<Integer> items = new ArrayList<Integer>();
-		items.add(R.string.default_lorem);
-		items.add(R.string.default_lorem);
-		items.add(R.string.default_lorem);
-		items.add(R.string.default_lorem);
-
-		CustomStouringListFragmentAdapter adapter = new CustomStouringListFragmentAdapter(getActivity());
-		adapter.bind(items);
-		setListAdapter(adapter);
-
+		 mItems = new ArrayList<TouringPlace>();
+		 Resources resources = getResources();
+		 mItems.add(new TouringPlace("France", (float) 4, 2));
+		 mItems.add(new TouringPlace("Allemagne", (float) 3.5, 2));
+		 mItems.add(new TouringPlace("Royaume Uni", (float) 2.5, 2));
+		 mItems.add(new TouringPlace("Russie", (float) 1.5, 2));
+		 mItems.add(new TouringPlace("Italie", (float) 2.7, 2));
+		 
+		// initialize and set the list adapter
+		 setListAdapter(new CustomStouringListFragmentAdapter(getActivity(), mItems));
 	}
+	
+	 @Override
+	 public void onViewCreated(View view, Bundle savedInstanceState) {
+	 super.onViewCreated(view, savedInstanceState);
+	 // remove the dividers from the ListView of the ListFragment
+	 getListView().setDivider(null);
+	 }
 
-
-	/*@Override
-		public void onActivityCreated(Bundle savedInstanceState) {
-		super.onActivityCreated(savedInstanceState);
-
-		final String[] items = myArray;
-		final ArrayAdapter<String> aa = new ArrayAdapter<String>(getActivity(),
-				android.R.layout.simple_list_item_1, items);
-
-		setListAdapter(aa);
-	}*/
 
 
 
