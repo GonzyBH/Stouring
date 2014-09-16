@@ -11,7 +11,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.Toast;
 
 public class FragmentTouringList extends ListFragment {
 	
@@ -33,11 +35,11 @@ public class FragmentTouringList extends ListFragment {
 		
 		 mItems = new ArrayList<TouringPlace>();
 		 Resources resources = getResources();
-		 mItems.add(new TouringPlace("France", (float) 4, 2));
-		 mItems.add(new TouringPlace("Allemagne", (float) 3.5, 2));
-		 mItems.add(new TouringPlace("Royaume Uni", (float) 2.5, 2));
-		 mItems.add(new TouringPlace("Russie", (float) 1.5, 2));
-		 mItems.add(new TouringPlace("Italie", (float) 2.7, 2));
+		 mItems.add(new TouringPlace("France", (float) 4, resources.getDrawable(R.drawable.eiffelonly)));
+		 mItems.add(new TouringPlace("Allemagne", (float) 3.5, resources.getDrawable(R.drawable.stouringlogomin)));
+		 mItems.add(new TouringPlace("Royaume Uni", (float) 2.5, resources.getDrawable(R.drawable.stouringlogocolormin)));
+		 mItems.add(new TouringPlace("Russie", (float) 1.5, resources.getDrawable(R.drawable.marais)));
+		 mItems.add(new TouringPlace("Italie", (float) 2.7, resources.getDrawable(R.drawable.tourargent_detail)));
 		 
 		// initialize and set the list adapter
 		 setListAdapter(new CustomStouringListFragmentAdapter(getActivity(), mItems));
@@ -45,12 +47,19 @@ public class FragmentTouringList extends ListFragment {
 	
 	 @Override
 	 public void onViewCreated(View view, Bundle savedInstanceState) {
-	 super.onViewCreated(view, savedInstanceState);
-	 // remove the dividers from the ListView of the ListFragment
-	 getListView().setDivider(null);
+		 super.onViewCreated(view, savedInstanceState);
+		 // remove the dividers from the ListView of the ListFragment
+		 getListView().setDivider(null);
 	 }
 
-
+	 @Override
+	 public void onListItemClick(ListView l, View v, int position, long id) {
+		 // retrieve theListView item
+		 TouringPlace item = mItems.get(position);
+		 
+		 // do something
+		 Toast.makeText(getActivity(), item.getName(), Toast.LENGTH_SHORT).show();
+	 }
 
 
 
