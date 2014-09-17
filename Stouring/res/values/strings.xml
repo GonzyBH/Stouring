@@ -6,6 +6,7 @@
     <string name="text_empty">Empty List</string>
     <string name="touringlistactivity_name">TouringList</string>
     <string name="newconnexionactivity_name">NewConnexion</string>
+    <string name="tpdisplayer_name">Vue du Restaurant</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="app_desc">Smart touring and shopping</string>

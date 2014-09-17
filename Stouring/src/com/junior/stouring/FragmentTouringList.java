@@ -1,19 +1,19 @@
 package com.junior.stouring;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.Toast;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 
 public class FragmentTouringList extends ListFragment {
 	
@@ -35,11 +35,13 @@ public class FragmentTouringList extends ListFragment {
 		
 		 mItems = new ArrayList<TouringPlace>();
 		 Resources resources = getResources();
-		 mItems.add(new TouringPlace("France", (float) 4, resources.getDrawable(R.drawable.eiffelonly)));
-		 mItems.add(new TouringPlace("Allemagne", (float) 3.5, resources.getDrawable(R.drawable.stouringlogomin)));
-		 mItems.add(new TouringPlace("Royaume Uni", (float) 2.5, resources.getDrawable(R.drawable.stouringlogocolormin)));
-		 mItems.add(new TouringPlace("Russie", (float) 1.5, resources.getDrawable(R.drawable.marais)));
-		 mItems.add(new TouringPlace("Italie", (float) 2.7, resources.getDrawable(R.drawable.tourargent_detail)));
+		 Bitmap bitmap = (Bitmap)((BitmapDrawable) resources.getDrawable(R.drawable.sac_toile_stouring)).getBitmap();
+		 Bitmap bitmap1 = (Bitmap)((BitmapDrawable) resources.getDrawable(R.drawable.stouringlogomin)).getBitmap();
+		 mItems.add(new TouringPlace("France", (float) 4, bitmap,0,0));
+		 mItems.add(new TouringPlace("Allemagne", (float) 3.5, bitmap,0,0));
+		 mItems.add(new TouringPlace("Royaume Uni", (float) 2.5, bitmap,0,0));
+		 mItems.add(new TouringPlace("Russie", (float) 1.5, bitmap1,0,0));
+		 mItems.add(new TouringPlace("Italie", (float) 2.7, bitmap,0,0));
 		 
 		// initialize and set the list adapter
 		 setListAdapter(new CustomStouringListFragmentAdapter(getActivity(), mItems));
@@ -58,7 +60,10 @@ public class FragmentTouringList extends ListFragment {
 		 TouringPlace item = mItems.get(position);
 		 
 		 // do something
-		 Toast.makeText(getActivity(), item.getName(), Toast.LENGTH_SHORT).show();
+		 Toast.makeText(getActivity(), item.getName(), Toast.LENGTH_SHORT).show(); 
+		 Intent intent = new Intent(getActivity(), TouringPlaceDisplayerActivity.class);
+		 intent.putExtra("touringplace", item);
+		 getActivity().startActivity(intent);
 	 }
 
 

@@ -1,6 +1,5 @@
 package com.junior.stouring;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Context;
@@ -8,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -19,9 +17,6 @@ public class CustomStouringListFragmentAdapter extends ArrayAdapter<TouringPlace
 	public CustomStouringListFragmentAdapter(Context context, List<TouringPlace> items) {
 		super(context, R.layout.row_activity_fragment_touringlist, items);
 		}
-	
-	//private List<Integer> mModel = new ArrayList<Integer>();
-	private Context mContext;
 	
 	 private static class ViewHolder {
 		 ImageView ivIcon;
@@ -53,7 +48,7 @@ public class CustomStouringListFragmentAdapter extends ArrayAdapter<TouringPlace
 			 }
 			 // update the item view
 			 TouringPlace item = getItem(position);
-			 viewHolder.ivIcon.setImageDrawable(item.getImage());
+			 viewHolder.ivIcon.setImageBitmap(item.getImage());
 			 viewHolder.tvName.setText(item.getName());
 			 viewHolder.rbMark.setStepSize((float) 0.1);
 			 viewHolder.rbMark.setIsIndicator(true);
