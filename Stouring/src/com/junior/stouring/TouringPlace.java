@@ -34,6 +34,8 @@ public class TouringPlace implements Parcelable, Comparable<TouringPlace>{
 		this.Name = in.readString();
 		this.Mark = in.readFloat();
 		this.Image = in.readParcelable(getClass().getClassLoader());
+		this.Latitude = in.readDouble();
+		this.Longitude = in.readDouble();
 	}
 	
 	public String getName(){
@@ -89,6 +91,8 @@ public class TouringPlace implements Parcelable, Comparable<TouringPlace>{
 		dest.writeFloat(Mark);
 		//Bitmap bitmap = (Bitmap)((BitmapDrawable) Image).getBitmap();
 		dest.writeParcelable(Image, flags);
+		dest.writeDouble(Latitude);
+		dest.writeDouble(Longitude);
 	}
 	
 	public static final Parcelable.Creator<TouringPlace> CREATOR = new Parcelable.Creator<TouringPlace>()

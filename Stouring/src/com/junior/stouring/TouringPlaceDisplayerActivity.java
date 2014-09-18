@@ -14,7 +14,7 @@ public class TouringPlaceDisplayerActivity extends Activity{
     
         TouringPlace mTouringPlace = getIntent().getExtras().getParcelable("touringplace");
         TextView displayPlaceInfo = (TextView) findViewById(R.id.displaytp);
-        displayPlaceInfo.setText("User : " + "\n" + " FirstName : " + mTouringPlace.getName() + "\n" + " LastName : " + mTouringPlace.getMark());
+        displayPlaceInfo.setText("User : " + "\n" + " FirstName : " + mTouringPlace.getName() + "\n" + " LastName : " + mTouringPlace.getMark()  + "\n" + " Latitude : " + mTouringPlace.getLatitude()  + "\n" + " Longitude : " + mTouringPlace.getLongitude());
         
         ImageView displayPlaceIcon = (ImageView) findViewById(R.id.placeIcon);
         displayPlaceIcon.setImageBitmap(mTouringPlace.getImage());

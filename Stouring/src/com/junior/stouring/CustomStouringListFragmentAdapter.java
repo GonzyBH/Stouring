@@ -13,16 +13,23 @@ import android.widget.TextView;
 
 public class CustomStouringListFragmentAdapter extends ArrayAdapter<TouringPlace>{
 	
+	private List<TouringPlace> mTouringPlaces;
 	
 	public CustomStouringListFragmentAdapter(Context context, List<TouringPlace> items) {
 		super(context, R.layout.row_activity_fragment_touringlist, items);
-		}
+		mTouringPlaces = items;
+	}
 	
 	 private static class ViewHolder {
 		 ImageView ivIcon;
 		 TextView tvName;
 		 RatingBar rbMark;
 		 }
+	 
+	 @Override
+	 public int getCount() {
+		 return mTouringPlaces.size();
+	 }
 	
 	
 	 @Override
