@@ -55,7 +55,9 @@
                 android:layout_marginTop="2dip"
                 android:textColor="#372c24"
                 android:text="Nom"/>
-          <EditText android:layout_width="fill_parent"
+          <EditText 
+              	android:id="@+id/et_name"
+              	android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dip"
                 android:layout_marginBottom="20dip"
@@ -68,7 +70,7 @@
                 android:textColor="#372c24"
                 android:text="Type de commerce"/>
           <Spinner
-		        android:id="@+id/spinner1"
+		        android:id="@+id/spinnerType"
 		        android:layout_width="match_parent"
 		        android:layout_height="wrap_content"
 		        android:entries="@array/storetype_arrays"
@@ -114,8 +116,7 @@
           <Button android:id="@+id/btnLogin"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dip"
-                android:text="Validez"/>
+                android:layout_marginTop="10dip"/>
           
           
           <!-- Link to Registration Screen -->

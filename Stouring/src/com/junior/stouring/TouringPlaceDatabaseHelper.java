@@ -12,7 +12,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class TouringPlaceDatabaseHelper extends SQLiteOpenHelper{
 
 	 // Database Version
-	private static final int DATABASE_VERSION = 1;
+	private static final int DATABASE_VERSION = 2;
 	// Database Name
 	private static final String DATABASE_NAME = "TP_database.db";
 	// Table name
@@ -21,6 +21,7 @@ public class TouringPlaceDatabaseHelper extends SQLiteOpenHelper{
 	private static final String COLUMN_ID = "id";
 	private static final String COLUMN_NAME = "name";
 	private static final String COLUMN_RATING = "rating";
+	private static final String COLUMN_TYPE = "type";
 	private static final String COLUMN_LATITUDE = "latitude";
 	private static final String COLUMN_LONGITUDE = "longitude";
 	
@@ -34,6 +35,7 @@ public class TouringPlaceDatabaseHelper extends SQLiteOpenHelper{
 		 + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
 		 + COLUMN_NAME + " TEXT UNIQUE NOT NULL,"
 		 + COLUMN_RATING + " FLOAT NOT NULL,"
+		 + COLUMN_TYPE + " STRING NOT NULL,"
 		 + COLUMN_LATITUDE + " DOUBLE NOT NULL,"
 		 + COLUMN_LONGITUDE + " DOUBLE NOT NULL"+ ")");
 	 }
@@ -80,13 +82,14 @@ public class TouringPlaceDatabaseHelper extends SQLiteOpenHelper{
 		 Cursor cursor = db.query(TOURING_PLACE, new String[] {
 		 COLUMN_NAME,
 		 COLUMN_RATING,
+		 COLUMN_TYPE,
 		 COLUMN_LATITUDE,
 		 COLUMN_LONGITUDE},
 		 null, null, null, null, null, null); // get all rows
 		 if (cursor != null) {
 			 // add items to the list
 			 for(cursor.moveToFirst(); cursor.isAfterLast() == false; cursor.moveToNext()) {
-				 items.add(new TouringPlace(cursor.getString(0), Float.parseFloat(cursor.getString(1)), Double.parseDouble(cursor.getString(2)), Double.parseDouble(cursor.getString(3))));
+				 items.add(new TouringPlace(cursor.getString(0), Float.parseFloat(cursor.getString(1)), cursor.getString(2), Double.parseDouble(cursor.getString(3)), Double.parseDouble(cursor.getString(4))));
 		 }
 		 // close the cursor
 		 cursor.close();
@@ -105,6 +108,7 @@ public class TouringPlaceDatabaseHelper extends SQLiteOpenHelper{
 		 ContentValues values = new ContentValues();
 		 values.put(COLUMN_NAME, item.getName());
 		 values.put(COLUMN_RATING, item.getMark());
+		 values.put(COLUMN_TYPE, item.getType());
 		 values.put(COLUMN_LATITUDE, item.getLatitude());
 		 values.put(COLUMN_LONGITUDE, item.getLongitude());
 		 // add the row
@@ -126,6 +130,8 @@ public class TouringPlaceDatabaseHelper extends SQLiteOpenHelper{
 		 db.close();
 		 }
 	 }
+	 
+	 
 	
 	 /**
 	 * update an existing item

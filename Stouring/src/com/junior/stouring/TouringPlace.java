@@ -9,23 +9,39 @@ public class TouringPlace implements Parcelable, Comparable<TouringPlace>{
 	
 	private String Name;
 	private float Mark;
+	private String Type;
 	private Bitmap Image;
 	private double Latitude;
 	private double Longitude;
 
-	public TouringPlace(String pName, float pMark, Bitmap pBitmap, double pLatitude, double pLongitude) {
+	public TouringPlace(
+			String pName,
+			float pMark,
+			String pType,
+			Bitmap pBitmap,
+			double pLatitude,
+			double pLongitude) 
+	{
 		super();
 		this.Name = pName;
 		this.Mark = pMark;
+		this.Type = pType;
 		this.Image = pBitmap;
 		this.Latitude = pLatitude;
 		this.Longitude = pLongitude;
 	}
 	
-	public TouringPlace(String pName, float pMark, double pLatitude, double pLongitude) {
+	public TouringPlace(
+			String pName,
+			float pMark,
+			String pType,
+			double pLatitude,
+			double pLongitude) 
+	{
 		super();
 		this.Name = pName;
 		this.Mark = pMark;
+		this.Type = pType;
 		this.Latitude = pLatitude;
 		this.Longitude = pLongitude;
 	}
@@ -33,6 +49,7 @@ public class TouringPlace implements Parcelable, Comparable<TouringPlace>{
 	public TouringPlace(Parcel in) {
 		this.Name = in.readString();
 		this.Mark = in.readFloat();
+		this.Type = in.readString();
 		this.Image = in.readParcelable(getClass().getClassLoader());
 		this.Latitude = in.readDouble();
 		this.Longitude = in.readDouble();
@@ -44,6 +61,10 @@ public class TouringPlace implements Parcelable, Comparable<TouringPlace>{
 	
 	public float getMark(){
 		return Mark;
+	}
+	
+	public String getType(){
+		return Type;
 	}
 	
 	public Bitmap getImage(){
@@ -64,6 +85,10 @@ public class TouringPlace implements Parcelable, Comparable<TouringPlace>{
 
 	public void setMark(float pMark){
 		Mark = pMark;
+	}
+	
+	public void setType(String pType){
+		Type = pType;
 	}
 	
 	public void setImage(Bitmap pImage){
@@ -89,7 +114,7 @@ public class TouringPlace implements Parcelable, Comparable<TouringPlace>{
 		// TODO Auto-generated method stub
 		dest.writeString(Name);
 		dest.writeFloat(Mark);
-		//Bitmap bitmap = (Bitmap)((BitmapDrawable) Image).getBitmap();
+		dest.writeString(Type);
 		dest.writeParcelable(Image, flags);
 		dest.writeDouble(Latitude);
 		dest.writeDouble(Longitude);

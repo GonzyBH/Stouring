@@ -25,7 +25,7 @@ public class CustomStouringListFragmentAdapter extends ArrayAdapter<TouringPlace
 		 TextView tvName;
 		 RatingBar rbMark;
 		 }
-	 
+	   
 	 @Override
 	 public int getCount() {
 		 return mTouringPlaces.size();

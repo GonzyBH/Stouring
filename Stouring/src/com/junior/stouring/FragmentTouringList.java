@@ -51,15 +51,15 @@ public class FragmentTouringList extends ListFragment {
 		Bitmap bitmap = (Bitmap)((BitmapDrawable) resources.getDrawable(R.drawable.sac_toile_stouring)).getBitmap();
 		Bitmap bitmap1 = (Bitmap)((BitmapDrawable) resources.getDrawable(R.drawable.stouringlogomin)).getBitmap();
 		
-		mItems.add(new TouringPlace("France", (float) 4, bitmap,0,54));
-		mItems.add(new TouringPlace("Allemagne", (float) 3.5, bitmap,0,0));
-		mItems.add(new TouringPlace("Royaume Uni", (float) 2.5, bitmap,0,0));
+		mItems.add(new TouringPlace("France", (float) 4, "Restaurant", bitmap,0,54));
+		mItems.add(new TouringPlace("Allemagne", (float) 3.5, "Brasserie", bitmap,0,0));
+		mItems.add(new TouringPlace("Royaume Uni", (float) 2.5, "Pub", bitmap,0,0));
 		//mItems.add(new TouringPlace("Russie", (float) 1.5, bitmap1,0,0));
-		mItems.add(new TouringPlace("Italie", (float) 2.7, bitmap,0,0));
+		mItems.add(new TouringPlace("Italie", (float) 2.7, "Pizzeria", bitmap,0,0));
 		 
 		mDatabaseHelper.addItems(mItems);
 		
-		TouringPlace USA = new TouringPlace("USA MOTHA FUKA", (float) 4.9, bitmap,56,4);
+		TouringPlace USA = new TouringPlace("USA MOTHA FUKA", (float) 4.9,"Fast Food", bitmap,56,4);
 		
 		mDatabaseHelper.addItem(USA);
 		
@@ -105,7 +105,7 @@ public class FragmentTouringList extends ListFragment {
 		 // remove the dividers from the ListView of the ListFragment
 		 getListView().setDivider(null);
 	 }
- 
+
 	 @Override
 	 public void onListItemClick(ListView l, View v, int position, long id) {
 		 // retrieve theListView item
@@ -117,7 +117,7 @@ public class FragmentTouringList extends ListFragment {
 		 intent.putExtra("touringplace", item);
 		 getActivity().startActivity(intent);
 	 }
- 
+
 
 
 }
