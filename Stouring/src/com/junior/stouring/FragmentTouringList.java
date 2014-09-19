@@ -117,7 +117,7 @@ public class FragmentTouringList extends ListFragment {
 		 intent.putExtra("touringplace", item);
 		 getActivity().startActivity(intent);
 	 }
-
+ 
 
 
 }
