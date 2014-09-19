@@ -105,7 +105,7 @@ public class FragmentTouringList extends ListFragment {
 		 // remove the dividers from the ListView of the ListFragment
 		 getListView().setDivider(null);
 	 }
-
+ 
 	 @Override
 	 public void onListItemClick(ListView l, View v, int position, long id) {
 		 // retrieve theListView item
