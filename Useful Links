@@ -3,3 +3,6 @@ To visualize created DB as a Eclipse Plug-In
 
 - http://stackoverflow.com/questions/15862432/upgrading-database-version-automatically
 To clear a database programically
+
+-http://stackoverflow.com/questions/6850683/using-onresume-to-refresh-activity
+To refresh view when coming back to ListFragment
