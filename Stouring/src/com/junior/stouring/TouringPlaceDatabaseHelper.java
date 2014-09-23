@@ -8,6 +8,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 public class TouringPlaceDatabaseHelper extends SQLiteOpenHelper{
 
@@ -129,6 +130,19 @@ public class TouringPlaceDatabaseHelper extends SQLiteOpenHelper{
 		 // close the database connection
 		 db.close();
 		 }
+	 }
+	 
+	 public void deleteItem(TouringPlace pTP){
+		// 1. get reference to writable DB
+	        SQLiteDatabase db = this.getWritableDatabase();
+	     // 2. delete
+	        db.delete(TOURING_PLACE, //table name
+	                null,  // selections
+	                null); //selections args
+	        		Log.d("deleteTP", pTP.getName());
+	 
+	        // 3. close
+	        db.close();
 	 }
 	 
 	 
