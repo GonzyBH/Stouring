@@ -24,7 +24,7 @@ public class NewConnexionActivity extends Activity {
 
 					Intent lunchTouringList = new Intent(NewConnexionActivity.this, NewStoreFormActivity.class);
 					startActivity(lunchTouringList);
-				}
+				} 
 			});
 			
 			Button buttonprivate = (Button)findViewById(R.id.buttonprivate);

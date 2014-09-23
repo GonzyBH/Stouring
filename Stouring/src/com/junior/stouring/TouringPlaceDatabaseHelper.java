@@ -137,13 +137,24 @@ public class TouringPlaceDatabaseHelper extends SQLiteOpenHelper{
 	        SQLiteDatabase db = this.getWritableDatabase();
 	     // 2. delete
 	        db.delete(TOURING_PLACE, //table name
-	                null,  // selections
-	                null); //selections args
-	        		Log.d("deleteTP", pTP.getName());
+	                COLUMN_NAME+" = ?",  // selections
+	                new String[] { pTP.getName() }); //selections args
 	 
 	        // 3. close
 	        db.close();
 	 }
+	 
+	 public void deleteAllItem(){
+			// 1. get reference to writable DB
+		        SQLiteDatabase db = this.getWritableDatabase();
+		     // 2. delete
+		        db.delete(TOURING_PLACE, //table name
+		                null,  // All rows
+		                null); //selections args
+		 
+		        // 3. close
+		        db.close();
+		 }
 	 
 	 
 	
