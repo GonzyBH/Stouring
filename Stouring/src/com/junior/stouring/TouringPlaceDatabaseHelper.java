@@ -17,14 +17,44 @@ public class TouringPlaceDatabaseHelper extends SQLiteOpenHelper{
 	// Database Name
 	private static final String DATABASE_NAME = "TP_database.db";
 	// Table name
-	private static final String TOURING_PLACE = "TP_list";
-	// Column names
+	private static final String TABLE_TOURING_PLACE = "TP_list";
+	private static final String TABLE_USER = "User_list";
+	
+	//Common Column names
 	private static final String COLUMN_ID = "id";
+	
+	//TABLE_TOURING_PLACE Column names
 	private static final String COLUMN_NAME = "name";
 	private static final String COLUMN_RATING = "rating";
 	private static final String COLUMN_TYPE = "type";
 	private static final String COLUMN_LATITUDE = "latitude";
 	private static final String COLUMN_LONGITUDE = "longitude";
+	
+	//TABLE_USER
+	private static final String COLUMN_FIRST_NAME = "firstname";
+	private static final String COLUMN_LAST_NAME = "lastname";
+	private static final String COLUMN_EMAIL = "email";
+	private static final String COLUMN_PASSWORD = "password";
+	
+	//Table Create Statements
+	//TABLE_TOURING_PLACE table create statement
+	private static final String CREATE_TABLE_TOURING_PLACE = 
+			"CREATE TABLE " + TABLE_TOURING_PLACE + "("
+			 + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+			 + COLUMN_NAME + " TEXT UNIQUE NOT NULL,"
+			 + COLUMN_RATING + " FLOAT NOT NULL,"
+			 + COLUMN_TYPE + " STRING NOT NULL,"
+			 + COLUMN_LATITUDE + " DOUBLE NOT NULL,"
+			 + COLUMN_LONGITUDE + " DOUBLE NOT NULL"+ ")";
+	
+	//TABLE_USER table create statement
+	private static final String CREATE_TABLE_USER = 
+			"CREATE TABLE " + TABLE_USER + "("
+			 + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+			 + COLUMN_FIRST_NAME + " STRING NOT NULL,"
+			 + COLUMN_LAST_NAME + " STRING NOT NULL,"
+			 + COLUMN_EMAIL + " STRING NOT NULL,"
+			 + COLUMN_PASSWORD + " STRING NOT NULL"+ ")";
 	
 	public TouringPlaceDatabaseHelper(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -32,20 +62,16 @@ public class TouringPlaceDatabaseHelper extends SQLiteOpenHelper{
 	
 	 @Override
 	 public void onCreate(SQLiteDatabase db) {
-		 db.execSQL("CREATE TABLE " + TOURING_PLACE + "("
-		 + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-		 + COLUMN_NAME + " TEXT UNIQUE NOT NULL,"
-		 + COLUMN_RATING + " FLOAT NOT NULL,"
-		 + COLUMN_TYPE + " STRING NOT NULL,"
-		 + COLUMN_LATITUDE + " DOUBLE NOT NULL,"
-		 + COLUMN_LONGITUDE + " DOUBLE NOT NULL"+ ")");
+		 db.execSQL(CREATE_TABLE_TOURING_PLACE);
+		 db.execSQL(CREATE_TABLE_USER);
 	 }
 	  
 	 @Override
 	 public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 		 // simple database upgrade operation:
 		 // 1) drop the old table
-		 db.execSQL("DROP TABLE IF EXISTS " + TOURING_PLACE);
+		 db.execSQL("DROP TABLE IF EXISTS " + TABLE_TOURING_PLACE);
+		 db.execSQL("DROP TABLE IF EXISTS " + TABLE_USER);
 		 // 2) create a new database
 		 onCreate(db);
 	 }
@@ -80,7 +106,7 @@ public class TouringPlaceDatabaseHelper extends SQLiteOpenHelper{
 		 // obtain a readable database
 		 SQLiteDatabase db = getReadableDatabase();
 		 // send query
-		 Cursor cursor = db.query(TOURING_PLACE, new String[] {
+		 Cursor cursor = db.query(TABLE_TOURING_PLACE, new String[] {
 		 COLUMN_NAME,
 		 COLUMN_RATING,
 		 COLUMN_TYPE,
@@ -114,8 +140,23 @@ public class TouringPlaceDatabaseHelper extends SQLiteOpenHelper{
 		 values.put(COLUMN_LONGITUDE, item.getLongitude());
 		 // add the row
 		 SQLiteDatabase db = getWritableDatabase();
-		 db.insert(TOURING_PLACE, null, values);
+		 db.insert(TABLE_TOURING_PLACE, null, values);
 	 }
+	 
+	 /**
+		 * Add a new user
+		 */
+		 public void addUser(User pUser) {
+			 // prepare values
+			 ContentValues values = new ContentValues();
+			 values.put(COLUMN_FIRST_NAME, pUser.getFirstName());
+			 values.put(COLUMN_LAST_NAME, pUser.getLastName());
+			 values.put(COLUMN_EMAIL, pUser.getEmail());
+			 values.put(COLUMN_PASSWORD, pUser.getPassword());
+			 // add the row
+			 SQLiteDatabase db = getWritableDatabase();
+			 db.insert(TABLE_USER, null, values);
+		 }
 	 
 	 /**
 	 * Add items to the list
@@ -136,7 +177,7 @@ public class TouringPlaceDatabaseHelper extends SQLiteOpenHelper{
 		// 1. get reference to writable DB
 	        SQLiteDatabase db = this.getWritableDatabase();
 	     // 2. delete
-	        db.delete(TOURING_PLACE, //table name
+	        db.delete(TABLE_TOURING_PLACE, //table name
 	                COLUMN_NAME+" = ?",  // selections
 	                new String[] { pTP.getName() }); //selections args
 	 
@@ -148,7 +189,7 @@ public class TouringPlaceDatabaseHelper extends SQLiteOpenHelper{
 			// 1. get reference to writable DB
 		        SQLiteDatabase db = this.getWritableDatabase();
 		     // 2. delete
-		        db.delete(TOURING_PLACE, //table name
+		        db.delete(TABLE_TOURING_PLACE, //table name
 		                null,  // All rows
 		                null); //selections args
 		 

@@ -15,9 +15,16 @@
         android:layout_height="wrap_content"
         android:src="@drawable/stouringlogocolormin" />
     
-    <Button android:id="@+id/btndelete"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dip"/>
+    <Button 
+        android:id="@+id/btndelete"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dip"/>
+    
+      <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.MapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 </LinearLayout>

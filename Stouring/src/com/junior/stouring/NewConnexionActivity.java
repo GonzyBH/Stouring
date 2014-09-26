@@ -22,13 +22,21 @@ public class NewConnexionActivity extends Activity {
 				@Override
 					public void onClick(View v) {
 
-					Intent lunchTouringList = new Intent(NewConnexionActivity.this, NewStoreFormActivity.class);
-					startActivity(lunchTouringList);
+					Intent lunchStoreForm = new Intent(NewConnexionActivity.this, NewStoreFormActivity.class);
+					startActivity(lunchStoreForm);
 				} 
 			});
 			
 			Button buttonprivate = (Button)findViewById(R.id.buttonprivate);
 			buttonprivate.setText("Nouveau Client");
+			buttonprivate.setOnClickListener(new View.OnClickListener() {
+				@Override
+					public void onClick(View v) {
+
+					Intent lunchUserForm = new Intent(NewConnexionActivity.this, NewUserFormActivity.class);
+					startActivity(lunchUserForm);
+				} 
+			});
 	}
 
 }

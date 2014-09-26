@@ -97,7 +97,7 @@ public class FragmentTouringList extends ListFragment {
 		 getActivity().startActivityForResult(intent, 1);
 	 }
 
-	 @Override
+	/* @Override
 	 public void onActivityResult(int requestCode, int resultCode, Intent intent) {
 	     super.onActivityResult(requestCode, resultCode, intent);
 	     Toast.makeText(getActivity(), "activityResult", Toast.LENGTH_SHORT).show();
@@ -112,15 +112,16 @@ public class FragmentTouringList extends ListFragment {
 	     }
 	     //Toast.makeText(getActivity(), "onResume()", Toast.LENGTH_SHORT).show(); 
 	     mAdapter.notifyDataSetChanged();
-	 }
+	 }*/
 	 
-	 /*public void onResume()
+	 public void onResume()
 	 {
 	    super.onResume();
+	    mAdapter.notifyDataSetChanged();
 	    setListAdapter(mAdapter);
-		//mAdapter.notifyDataSetChanged();
+		
 	    //Toast.makeText(getActivity(), "onResume()", Toast.LENGTH_SHORT).show(); 
-	 }*/
+	 }
 
 }
 

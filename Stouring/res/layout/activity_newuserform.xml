@@ -46,79 +46,79 @@
                 android:layout_height="wrap_content"
                 android:textColor="#372c24"
                 android:gravity="center"
-                android:text="Ajoutez votre nouveau commerce"/>
+                android:text="Inscription"/>
            
            
-          <!--  Name Label -->
+          <!--  LastName Label -->
           <TextView android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dip"
                 android:textColor="#372c24"
                 android:text="Nom"/>
           <EditText 
-              	android:id="@+id/et_name"
+              	android:id="@+id/et_lastname"
               	android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dip"
                 android:layout_marginBottom="20dip"
                 android:singleLine="true"/>
           
-          
-          <!-- 	Store type spinner label -->
+          <!--  FirstName Label -->
           <TextView android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="2dip"
                 android:textColor="#372c24"
-                android:text="Type de commerce"/>
-          <Spinner
-		        android:id="@+id/spinnerType"
-		        android:layout_width="match_parent"
-		        android:layout_height="wrap_content"
-		        android:entries="@array/storetype_arrays"
-		        android:prompt="@string/storetype_prompt" />
+                android:text="Prenom"/>
+          <EditText 
+              	android:id="@+id/et_firstname"
+              	android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dip"
+                android:layout_marginBottom="20dip"
+                android:singleLine="true"/>
           
-          
-          <!--  Web Label -->
+          <!--  Email Label -->
           <TextView android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dip"
                 android:textColor="#372c24"
-                android:text="Adresse Web"/>
-          <EditText android:layout_width="fill_parent"
+                android:text="Adresse Email"/>
+          <EditText 
+              	android:id="@+id/et_email"
+              	android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dip"
                 android:singleLine="true"/>
           
           
-          <!--  Location Label -->
-          <TextView 
-              	android:id="@+id/tv_address"
-              	android:layout_width="fill_parent"
+          <!--  Password Label -->
+          <TextView android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dip"
                 android:textColor="#372c24"
-                android:text="Adresse"/>
+                android:text="Mot de Passe"/>
           <EditText 
-              	android:id="@+id/et_address"
+              	android:id="@+id/et_pw"
               	android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dip"
-                android:singleLine="true"/>
+                android:singleLine="true"
+                android:password="true"/>
           
-          <!--  City Label -->
-          <TextView 
-              	android:id="@+id/tv_city"
-              	android:layout_width="fill_parent"
+          <!--  Password Label -->
+          <TextView android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dip"
                 android:textColor="#372c24"
-                android:text="Ville"/>
+                android:text="Verification"/>
           <EditText 
-              	android:id="@+id/et_city"
+              	android:id="@+id/et_pwv"
               	android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dip"
-                android:singleLine="true"/>
-          
+                android:singleLine="true"
+                android:password="true"/>
+
           
           <!-- Login button -->
           <Button android:id="@+id/btnLogin"
