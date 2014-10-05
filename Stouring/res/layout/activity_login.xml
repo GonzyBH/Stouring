@@ -63,7 +63,7 @@
 				android:layout_marginRight="20dp"
 
 				android:layout_marginBottom="17dip"
-				android:layout_marginTop="50dip"
+				android:layout_marginTop="100dip"
 				android:paddingLeft="62dp"
 				android:paddingRight="10dp"
 				android:paddingTop="10dp"
