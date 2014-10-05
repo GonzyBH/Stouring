@@ -20,6 +20,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 		setContentView(R.layout.activity_login);
 		
 		Button login = (Button)findViewById(R.id.buttonfacebook);
+		login.setText("Connexion via Facebook");
 		login.setOnClickListener(new View.OnClickListener() {
 			@Override
 				public void onClick(View v) {
@@ -30,6 +31,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 		});
 		
 		Button accountcreator = (Button)findViewById(R.id.buttonstouring);
+		accountcreator.setText("Connexion/Inscription via Stouring");
 		accountcreator.setOnClickListener(new View.OnClickListener() {
 			@Override
 				public void onClick(View v) {
@@ -38,6 +40,14 @@ public class LoginActivity extends Activity implements OnClickListener {
 				startActivity(lunchTouringList);
 			}
 		});
+		
+		Button loginTwitter = (Button)findViewById(R.id.buttontwitter);
+		loginTwitter.setText("Connexion via Twitter");
+		
+		Button loginGoogle = (Button)findViewById(R.id.buttongoogle);
+		loginGoogle.setText("Connexion via Google");
+
+
 		
 	}
 
