@@ -31,7 +31,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 		});
 		
 		Button accountcreator = (Button)findViewById(R.id.buttonstouring);
-		accountcreator.setText("Connexion/Inscription via Stouring");
+		accountcreator.setText("Connexion via Stouring");
 		accountcreator.setOnClickListener(new View.OnClickListener() {
 			@Override
 				public void onClick(View v) {
