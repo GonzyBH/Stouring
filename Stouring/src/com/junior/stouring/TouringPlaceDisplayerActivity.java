@@ -74,7 +74,7 @@ public class TouringPlaceDisplayerActivity extends Activity{
         googleMap.addMarker(marker);
         
         Button bDelete = (Button)findViewById(R.id.btndelete);
-        bDelete.setText("Supprimez");
+        bDelete.setText("Supprimer");
         bDelete.setOnClickListener(new View.OnClickListener() {
 			@Override
 				public void onClick(View v) {

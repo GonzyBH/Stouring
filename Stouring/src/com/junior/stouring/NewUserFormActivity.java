@@ -31,7 +31,7 @@ public class NewUserFormActivity extends Activity{
 		final EditText etPasswordVerif = (EditText)findViewById(R.id.et_pwv);
 		
 		Button bValidate = (Button)findViewById(R.id.btnLogin);
-		bValidate.setText("Validez");
+		bValidate.setText("Valider");
 		bValidate.setOnClickListener(new View.OnClickListener() {
 			@Override
 				public void onClick(View v) {

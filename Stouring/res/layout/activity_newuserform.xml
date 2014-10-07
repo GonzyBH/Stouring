@@ -122,6 +122,8 @@
           
           <!-- Login button -->
           <Button android:id="@+id/btnLogin"
+              	android:background="@drawable/button_teal_shadow"
+              	android:textColor="#FFFFFF"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dip"/>

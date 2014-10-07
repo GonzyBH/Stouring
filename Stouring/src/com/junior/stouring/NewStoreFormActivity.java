@@ -45,7 +45,7 @@ public class NewStoreFormActivity extends Activity {
 		mDatabaseHelper = new TouringPlaceDatabaseHelper(getBaseContext());
 		
 		Button bValidate = (Button)findViewById(R.id.btnLogin);
-		bValidate.setText("Validez");
+		bValidate.setText("Valider");
 		bValidate.setOnClickListener(new View.OnClickListener() {
 			@Override
 				public void onClick(View v) {
