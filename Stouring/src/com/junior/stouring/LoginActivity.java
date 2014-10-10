@@ -47,6 +47,8 @@ public class LoginActivity extends Activity implements OnClickListener {
 		Button loginGoogle = (Button)findViewById(R.id.buttongoogle);
 		loginGoogle.setText("Connexion via Google");
 
+		Button loginLinkedin = (Button)findViewById(R.id.buttonlinkedin);
+		loginLinkedin.setText("Connexion via LinkedIn");
 
 		
 	}

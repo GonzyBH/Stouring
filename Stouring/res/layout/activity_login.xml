@@ -84,8 +84,23 @@
                 android:id="@+id/buttongoogle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="17dp"
                 android:background="@drawable/state_button_login_google"
                 android:drawableLeft="@drawable/logogoogle"
+                android:gravity="left|center_vertical"
+                android:paddingBottom="8dp"
+                android:paddingLeft="12dp"
+                android:paddingRight="8dp"
+                android:paddingTop="8dp"
+                android:textColor="#EEEEEE"
+                android:textSize="14sp" />
+            
+            <Button
+                android:id="@+id/buttonlinkedin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/state_button_login_linkedin"
+                android:drawableLeft="@drawable/logolinkedin"
                 android:gravity="left|center_vertical"
                 android:paddingBottom="8dp"
                 android:paddingLeft="12dp"

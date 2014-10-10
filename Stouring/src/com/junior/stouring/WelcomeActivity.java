@@ -6,38 +6,46 @@ import android.os.Bundle;
 import android.view.Window;
 
 public class WelcomeActivity extends Activity {
+
+	SessionManager session;
+
 	@Override
-	protected void onCreate(Bundle savedInstanceState) 
-	{
-	    // TODO Auto-generated method stub
-	    super.onCreate(savedInstanceState);
-	    
-	    this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+	protected void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onCreate(savedInstanceState);
 
-	    setContentView(R.layout.activity_welcome);
-	    Thread timer= new Thread()
-	    {
-	        public void run()
-	        {
-	            try
-	            {
-	                //Display for 3 seconds
-	                sleep(3000);
-	            }
-	            catch (InterruptedException e) 
-	            {
-	                // TODO: handle exception
-	                e.printStackTrace();
-	            }
-	            finally
-	            {   
+		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		session = new SessionManager(getApplicationContext());
 
-	            	Intent lunchLoginActivity = new Intent(WelcomeActivity.this, LoginActivity.class);
+		setContentView(R.layout.activity_welcome);
+		Thread timer = new Thread() {
+			public void run() {
+				try {
+					// Display for 3 seconds
+					sleep(3000);
+				} catch (InterruptedException e) {
+					// TODO: handle exception
+					e.printStackTrace();
+				} finally {
+					Intent lunchLoginActivity = new Intent(
+							WelcomeActivity.this, LoginActivity2.class);
 					startActivity(lunchLoginActivity);
-	            }
-	        }
-	    };
-	    timer.start();
+					finish();
+
+				}
+			}
+		};
+		if (session.isLoggedIn()) {
+
+			Intent lunchMainActivity = new Intent(WelcomeActivity.this,
+					TouringListActivity.class);
+			startActivity(lunchMainActivity);
+			finish();
+		} else {
+
+			timer.start();
+
+		}
+
 	}
 }
-

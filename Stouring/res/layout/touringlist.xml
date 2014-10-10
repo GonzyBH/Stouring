@@ -1,44 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@layout/footer_gradient" >
 
-<RelativeLayout
-    	xmlns:android="http://schemas.android.com/apk/res/android"
+    <!-- Header Starts -->
+
+    <LinearLayout
+        android:id="@+id/header"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" android:background="@layout/footer_gradient">
- 
-        <!--  Header Starts-->
-        <LinearLayout android:id="@+id/header"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:background="#ffffff"
-                android:paddingTop="5dip"
-                android:paddingBottom="5dip"
-                android:gravity="center">
-                <!-- Logo Start-->
-                <ImageView android:src="@drawable/stouring_header"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dip"/>
-                <!-- Logo Ends -->
-        </LinearLayout>
-        <!--  Header Ends -->
-        
-        <fragment 
-			    android:id="@+id/touringlist_fragment"
-			    android:name="com.junior.stouring.FragmentTouringList"
-			    android:layout_width="match_parent"
-			    android:layout_height="wrap_content"
-			    android:layout_below="@+id/header"
-			    android:layout_alignParentBottom="true" />
- 
-        <!-- Footer Start -->
-       	<!-- <LinearLayout 
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:gravity="center"
+        android:paddingBottom="5dip"
+        android:paddingTop="5dip" >
+
+        <!-- Logo Start -->
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:src="@drawable/stouring_header" />
+        <!-- Logo Ends -->
+
+        <Button
+            android:id="@+id/btnLogout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Logout" />
+    </LinearLayout>
+    <!-- Header Ends -->
+
+    <fragment
+        android:id="@+id/touringlist_fragment"
+        android:name="com.junior.stouring.FragmentTouringList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/header" />
+
+    <!-- Footer Start -->
+    <!--
+        <LinearLayout 
        	    	android:id="@+id/footer"
        	    	android:orientation="vertical"
 			    android:layout_width="fill_parent"
 			    android:layout_height="40dip"
 			    android:background="@layout/footer_gradient"
 			    android:layout_alignParentBottom="true">       
-		</LinearLayout>  -->
-		
-       	
+		</LinearLayout>
+    -->
+
 </RelativeLayout>

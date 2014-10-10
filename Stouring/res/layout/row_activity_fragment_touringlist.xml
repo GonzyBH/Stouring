@@ -5,13 +5,13 @@
 	android:layout_height="match_parent"
 	android:layout_gravity="center"
 	android:gravity="center_vertical"
-    android:background="@android:drawable/dialog_holo_light_frame"
-    android:padding="6dip">
+	android:background="@drawable/frame"
+    >
     
     <!-- the innner view - provides the white rectangle -->
 	<RelativeLayout android:layout_width="fill_parent"
 	android:layout_height="100dip"
-	android:background="@drawable/frame" >
+	 >
     
     <ImageView
         android:id="@+id/icon"
