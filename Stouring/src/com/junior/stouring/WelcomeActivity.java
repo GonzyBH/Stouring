@@ -28,7 +28,7 @@ public class WelcomeActivity extends Activity {
 					e.printStackTrace();
 				} finally {
 					Intent lunchLoginActivity = new Intent(
-							WelcomeActivity.this, LoginActivity2.class);
+							WelcomeActivity.this, LoginActivity.class);
 					startActivity(lunchLoginActivity);
 					finish();
 

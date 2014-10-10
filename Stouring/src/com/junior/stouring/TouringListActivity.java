@@ -20,24 +20,26 @@ public class TouringListActivity extends FragmentActivity {
 		setContentView(R.layout.touringlist);
 
 		session = new SessionManager(getApplicationContext());
+		if (session.isLoggedIn()) {
+			// Button logout
+			btnLogout = (Button) findViewById(R.id.btnLogout);
 
-		// Button logout
-		btnLogout = (Button) findViewById(R.id.btnLogout);
+			/**
+			 * Logout button click event
+			 * */
+			btnLogout.setOnClickListener(new View.OnClickListener() {
 
-		/**
-		 * Logout button click event
-		 * */
-		btnLogout.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View arg0) {
+					// Clear the session data
+					// This will clear all session data and
+					// redirect user to LoginActivity
+					session.logoutUser();
+					finish();
+				}
+			});
+		}
 
-			@Override
-			public void onClick(View arg0) {
-				// Clear the session data
-				// This will clear all session data and
-				// redirect user to LoginActivity
-				session.logoutUser();
-				finish();
-			}
-		});
 	}
 
 }
