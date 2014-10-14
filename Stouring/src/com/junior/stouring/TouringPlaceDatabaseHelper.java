@@ -219,6 +219,33 @@ public class TouringPlaceDatabaseHelper extends SQLiteOpenHelper {
 		db.close();
 	}
 
+	public List<User> getAllUsers() {
+		// initialize the list
+				List<User> items = new ArrayList<User>();
+				// obtain a readable database
+				SQLiteDatabase db = getReadableDatabase();
+				// send query
+				Cursor cursor = db.query(TABLE_USER, new String[] {
+						COLUMN_FIRST_NAME, COLUMN_LAST_NAME, COLUMN_EMAIL,
+						COLUMN_PASSWORD }, null, null, null, null, null, null); // get
+																					// all
+																					// rows
+				if (cursor != null) {
+					// add items to the list
+					for (cursor.moveToFirst(); cursor.isAfterLast() == false; cursor
+							.moveToNext()) {
+						items.add(new User(cursor.getString(0), cursor.getString(1), cursor.getString(2),
+								cursor.getString(3)));
+					}
+					// close the cursor
+					cursor.close();
+				}
+				// close the database connection
+				db.close();
+				// return the list
+				return items;
+	}
+
 	/**
 	 * update an existing item
 	 */

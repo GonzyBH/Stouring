@@ -1,160 +1,170 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/tour_port_blurry"
-    android:orientation="vertical" >
-
-    <ImageView
-        android:id="@+id/welcomeiamge"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_gravity="center"
-        android:layout_weight="1"
-        android:contentDescription="@string/hello_world"
-        android:paddingTop="10dp"
-        android:src="@drawable/logo_welcome" />
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scroll"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fillViewport="true">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2"
-        android:gravity="center"
-        android:orientation="horizontal" >
+        android:layout_height="wrap_content"
+        android:background="@drawable/tour_port_blurry"
+        android:orientation="vertical" >
 
-        <LinearLayout
+        <ImageView
+            android:id="@+id/welcomeiamge"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.2" />
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:contentDescription="@string/hello_world"
+            android:paddingTop="10dp"
+            android:src="@drawable/logo_welcome" />
 
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.6"
-            android:animateLayoutChanges="true"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
             android:gravity="center"
-            android:orientation="vertical" >
-
-            <Button
-                android:id="@+id/buttonstouring"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="17dip"
-                android:background="@drawable/state_button_login_stouring"
-                android:drawableLeft="@drawable/logostouring"
-                android:gravity="left|center_vertical"
-                android:paddingBottom="8dp"
-                android:paddingLeft="12dp"
-                android:paddingRight="8dp"
-                android:paddingTop="8dp"
-                android:textColor="#EEEEEE"
-                android:textSize="14sp" />
-
-            <EditText
-                android:id="@+id/login_stouring"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dip"
-                android:layout_marginTop="2dip"
-                android:hint="adresse email"
-                android:inputType="textEmailAddress"
-                android:singleLine="true"
-                android:textColor="#EEEEEE"
-                android:textColorHint="#EEEEEE"
-                android:color="#EEEEEE" />
+            android:orientation="horizontal" >
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal" >
+                android:layout_weight="0.2" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.6"
+                android:animateLayoutChanges="true"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <Button
+                    android:id="@+id/buttonstouring"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="17dip"
+                    android:background="@drawable/state_button_login_stouring"
+                    android:drawableLeft="@drawable/logostouring"
+                    android:gravity="left|center_vertical"
+                    android:paddingBottom="8dp"
+                    android:paddingLeft="12dp"
+                    android:paddingRight="8dp"
+                    android:paddingTop="8dp"
+                    android:textColor="#EEEEEE"
+                    android:textSize="14sp" />
 
                 <EditText
-                    android:id="@+id/mdp_stouring"
-                    android:layout_width="0dp"
+                    android:id="@+id/login_stouring"
+                    android:visibility="gone"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.8"
                     android:layout_marginBottom="20dip"
                     android:layout_marginTop="2dip"
-                    android:hint="mot de passe"
-                    android:inputType="textPassword"
+                    android:hint="adresse email"
+                    android:inputType="textEmailAddress"
                     android:singleLine="true"
                     android:textColor="#EEEEEE"
                     android:textColorHint="#EEEEEE"
                     android:color="#EEEEEE" />
 
-                <Button
-                    android:id="@+id/buttonOk"
-                    android:layout_width="0dp"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.2"
-                    android:background="@android:color/transparent"
-                    android:textColor="#EEEEEE" />
+                    android:orientation="horizontal" >
+
+                    <EditText
+                        android:id="@+id/mdp_stouring"
+                        android:layout_width="0dp"
+                        android:visibility="gone"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="20dip"
+                        android:layout_marginTop="2dip"
+                        android:layout_weight="0.8"
+                        android:hint="mot de passe"
+                        android:inputType="textPassword"
+                        android:singleLine="true"
+                        android:textColor="#EEEEEE"
+                        android:textColorHint="#EEEEEE"
+                        android:color="#EEEEEE" />
+
+                    <Button
+                        android:id="@+id/buttonOk"
+                        android:visibility="gone"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.2"
+                        android:background="@android:color/transparent"
+                        android:textColor="#EEEEEE" />
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/buttonfacebook"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="17dip"
+                    android:background="@drawable/state_button_login_facebook"
+                    android:drawableLeft="@drawable/logofacebook"
+                    android:gravity="left|center_vertical"
+                    android:paddingBottom="8dp"
+                    android:paddingLeft="12dp"
+                    android:paddingRight="8dp"
+                    android:paddingTop="8dp"
+                    android:textColor="#EEEEEE"
+                    android:textSize="14sp" />
+
+                <Button
+                    android:id="@+id/buttontwitter"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="17dp"
+                    android:background="@drawable/state_button_login_twitter"
+                    android:drawableLeft="@drawable/logotwitter"
+                    android:gravity="left|center_vertical"
+                    android:paddingBottom="8dp"
+                    android:paddingLeft="12dp"
+                    android:paddingRight="8dp"
+                    android:paddingTop="8dp"
+                    android:textColor="#EEEEEE"
+                    android:textSize="14sp" />
+
+                <Button
+                    android:id="@+id/buttongoogle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="17dp"
+                    android:background="@drawable/state_button_login_google"
+                    android:drawableLeft="@drawable/logogoogle"
+                    android:gravity="left|center_vertical"
+                    android:paddingBottom="8dp"
+                    android:paddingLeft="12dp"
+                    android:paddingRight="8dp"
+                    android:paddingTop="8dp"
+                    android:textColor="#EEEEEE"
+                    android:textSize="14sp" />
+
+                <Button
+                    android:id="@+id/buttonlinked"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/state_button_login_linkedin"
+                    android:drawableLeft="@drawable/logolinkedin"
+                    android:gravity="left|center_vertical"
+                    android:paddingBottom="8dp"
+                    android:paddingLeft="12dp"
+                    android:paddingRight="8dp"
+                    android:paddingTop="8dp"
+                    android:textColor="#EEEEEE"
+                    android:textSize="14sp" />
             </LinearLayout>
 
-            <Button
-                android:id="@+id/buttonfacebook"
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="17dip"
-                android:background="@drawable/state_button_login_facebook"
-                android:drawableLeft="@drawable/logofacebook"
-                android:gravity="left|center_vertical"
-                android:paddingBottom="8dp"
-                android:paddingLeft="12dp"
-                android:paddingRight="8dp"
-                android:paddingTop="8dp"
-                android:textColor="#EEEEEE"
-                android:textSize="14sp" />
-
-            <Button
-                android:id="@+id/buttontwitter"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="17dp"
-                android:background="@drawable/state_button_login_twitter"
-                android:drawableLeft="@drawable/logotwitter"
-                android:gravity="left|center_vertical"
-                android:paddingBottom="8dp"
-                android:paddingLeft="12dp"
-                android:paddingRight="8dp"
-                android:paddingTop="8dp"
-                android:textColor="#EEEEEE"
-                android:textSize="14sp" />
-
-            <Button
-                android:id="@+id/buttongoogle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="17dp"
-                android:background="@drawable/state_button_login_google"
-                android:drawableLeft="@drawable/logogoogle"
-                android:gravity="left|center_vertical"
-                android:paddingBottom="8dp"
-                android:paddingLeft="12dp"
-                android:paddingRight="8dp"
-                android:paddingTop="8dp"
-                android:textColor="#EEEEEE"
-                android:textSize="14sp" />
-
-            <Button
-                android:id="@+id/buttonlinked"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/state_button_login_linkedin"
-                android:drawableLeft="@drawable/logolinkedin"
-                android:gravity="left|center_vertical"
-                android:paddingBottom="8dp"
-                android:paddingLeft="12dp"
-                android:paddingRight="8dp"
-                android:paddingTop="8dp"
-                android:textColor="#EEEEEE"
-                android:textSize="14sp" />
+                android:layout_weight="0.2" />
         </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.2" />
     </LinearLayout>
 
-</LinearLayout>
+</ScrollView>

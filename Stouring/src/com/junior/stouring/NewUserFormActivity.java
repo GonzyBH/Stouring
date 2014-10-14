@@ -54,7 +54,7 @@ public class NewUserFormActivity extends Activity {
 						Toast.makeText(getBaseContext(),
 								uFirstName + " " + uLastName,
 								Toast.LENGTH_SHORT).show();
-						User newUser = new User(1, uFirstName, uLastName,
+						User newUser = new User(uFirstName, uLastName,
 								uEmail, uPass1);
 						mDatabaseHelper.addUser(newUser);
 					} else {

@@ -1,5 +1,17 @@
 package com.junior.stouring;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesUtil;
+import com.google.android.gms.common.SignInButton;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
+import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
+import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.plus.Plus;
+import com.google.android.gms.plus.model.people.Person;
+
+import android.app.ActionBar.LayoutParams;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,13 +20,18 @@ import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ScrollView;
 import android.widget.Toast;
 
-public class LoginActivity extends Activity implements OnClickListener {
+public class LoginActivity extends Activity implements OnClickListener,
+		ConnectionCallbacks, OnConnectionFailedListener {
 
-	
+	private EditText loginStouring;
+	private EditText mdpStouring;
+	private Button buttonOk;
+
 	SessionManager session;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -23,16 +40,10 @@ public class LoginActivity extends Activity implements OnClickListener {
 
 		setContentView(R.layout.activity_login);
 
-		final EditText loginStouring = (EditText) findViewById(R.id.login_stouring);
-		final EditText mdpStouring = (EditText) findViewById(R.id.mdp_stouring);
-		final Button buttonOk = (Button) findViewById(R.id.buttonOk);
-		
-		
+		loginStouring = (EditText) findViewById(R.id.login_stouring);
+		mdpStouring = (EditText) findViewById(R.id.mdp_stouring);
+		buttonOk = (Button) findViewById(R.id.buttonOk);
 		session = new SessionManager(getApplicationContext());
-
-		loginStouring.setVisibility(View.GONE);
-		mdpStouring.setVisibility(View.GONE);
-		buttonOk.setVisibility(View.GONE);
 
 		Button accountcreator = (Button) findViewById(R.id.buttonstouring);
 		accountcreator.setText("Connexion via Stouring");
@@ -58,8 +69,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 				String password = mdpStouring.getText().toString();
 
 				// Check if email, password is filled
-				if (email.trim().length() > 0
-						&& password.trim().length() > 0) {
+				if (email.trim().length() > 0 && password.trim().length() > 0) {
 					// For testing purpose email, password is checked with
 					// sample data
 					// email = test
@@ -67,10 +77,9 @@ public class LoginActivity extends Activity implements OnClickListener {
 					if (email.equals("test") && password.equals("test")) {
 
 						// Creating user login session
-						// For testing i am stroing name, email as follow
+						// For testing i am storing name, email as follow
 						// Use user real data
-						session.createLoginSession("Username",
-								email);
+						session.createLoginSession("Username", email);
 
 						// Staring MainActivity
 						Intent i = new Intent(getApplicationContext(),
@@ -118,11 +127,52 @@ public class LoginActivity extends Activity implements OnClickListener {
 
 		Button loginLinkedin = (Button) findViewById(R.id.buttonlinked);
 		loginLinkedin.setText("Connexion via LinkedIn");
+		loginLinkedin.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+
+				Intent launchUserList = new Intent(LoginActivity.this,
+						UserListActivity.class);
+				startActivity(launchUserList);
+			}
+		});
 
 	}
 
 	@Override
+	public void onBackPressed() {
+
+		loginStouring = (EditText) findViewById(R.id.login_stouring);
+		mdpStouring = (EditText) findViewById(R.id.mdp_stouring);
+		buttonOk = (Button) findViewById(R.id.buttonOk);
+
+		if (loginStouring.getVisibility() == View.VISIBLE) {
+			loginStouring.setVisibility(View.GONE);
+			mdpStouring.setVisibility(View.GONE);
+			buttonOk.setVisibility(View.GONE);
+		}
+	}
+
+	@Override
 	public void onClick(View v) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void onConnectionFailed(ConnectionResult arg0) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void onConnected(Bundle arg0) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void onConnectionSuspended(int arg0) {
 		// TODO Auto-generated method stub
 
 	}
