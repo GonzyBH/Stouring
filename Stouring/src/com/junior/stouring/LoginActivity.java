@@ -3,12 +3,7 @@ package com.junior.stouring;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.SignInButton;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
-import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
-import com.google.android.gms.common.api.ResultCallback;
-import com.google.android.gms.common.api.Status;
-import com.google.android.gms.plus.Plus;
+
 import com.google.android.gms.plus.model.people.Person;
 
 import android.app.ActionBar.LayoutParams;
@@ -23,8 +18,8 @@ import android.widget.EditText;
 import android.widget.ScrollView;
 import android.widget.Toast;
 
-public class LoginActivity extends Activity implements OnClickListener,
-		ConnectionCallbacks, OnConnectionFailedListener {
+public class LoginActivity extends Activity implements OnClickListener
+		{
 
 	private EditText loginStouring;
 	private EditText mdpStouring;
@@ -127,15 +122,6 @@ public class LoginActivity extends Activity implements OnClickListener,
 
 		Button loginLinkedin = (Button) findViewById(R.id.buttonlinked);
 		loginLinkedin.setText("Connexion via LinkedIn");
-		loginLinkedin.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-
-				Intent launchUserList = new Intent(LoginActivity.this,
-						UserListActivity.class);
-				startActivity(launchUserList);
-			}
-		});
 
 	}
 
@@ -159,22 +145,5 @@ public class LoginActivity extends Activity implements OnClickListener,
 
 	}
 
-	@Override
-	public void onConnectionFailed(ConnectionResult arg0) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void onConnected(Bundle arg0) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void onConnectionSuspended(int arg0) {
-		// TODO Auto-generated method stub
-
-	}
 
 }
