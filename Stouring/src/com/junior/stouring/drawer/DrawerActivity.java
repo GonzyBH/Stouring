@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import com.junior.stouring.R;
 import com.junior.stouring.SessionManager;
 import com.junior.stouring.slidingmenuadapter.NavDrawerListAdapter;
-import com.junior.stouring.slidingmenuadapter.NavDrawerListMaker;
 import com.junior.stouring.slidingmenumodel.NavDrawerItem;
 
 import android.annotation.TargetApi;
@@ -50,7 +49,6 @@ public class DrawerActivity extends FragmentActivity{
 
 	Button btnLogout;
 	SessionManager session;
-	NavDrawerListMaker mNavDrawerMaker;
 
 	@TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
 	@Override

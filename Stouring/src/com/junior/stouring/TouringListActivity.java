@@ -22,7 +22,6 @@ import android.widget.ListView;
 import com.junior.stouring.drawer.DrawerActivity;
 import com.junior.stouring.slidingmenumodel.NavDrawerItem;
 import com.junior.stouring.slidingmenuadapter.NavDrawerListAdapter;
-import com.junior.stouring.slidingmenuadapter.NavDrawerListMaker;
 
 public class TouringListActivity extends DrawerActivity {
 	
@@ -45,7 +44,6 @@ public class TouringListActivity extends DrawerActivity {
 
 	Button btnLogout;
 	SessionManager session;
-	NavDrawerListMaker mNavDrawerMaker;
 
 	
 	@TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
