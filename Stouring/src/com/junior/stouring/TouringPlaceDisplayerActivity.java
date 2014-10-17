@@ -10,6 +10,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.junior.stouring.drawer.DrawerActivity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -23,7 +24,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class TouringPlaceDisplayerActivity extends Activity{
+public class TouringPlaceDisplayerActivity extends DrawerActivity{
 	
 	TouringPlaceDatabaseHelper mDatabaseHelper;
 	int RESULT_DELETE;

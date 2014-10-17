@@ -1,5 +1,7 @@
 package com.junior.stouring;
 
+import com.junior.stouring.drawer.DrawerActivity;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
@@ -9,7 +11,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-public class NewUserFormActivity extends Activity {
+public class NewUserFormActivity extends DrawerActivity {
 
 	TouringPlaceDatabaseHelper mDatabaseHelper;
 
@@ -18,7 +20,7 @@ public class NewUserFormActivity extends Activity {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 
-		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		//this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
 		setContentView(R.layout.activity_newuserform);
 

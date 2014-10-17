@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import com.google.android.gms.maps.model.LatLng;
+import com.junior.stouring.drawer.DrawerActivity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -19,7 +20,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-public class NewStoreFormActivity extends Activity {
+public class NewStoreFormActivity extends DrawerActivity {
 	
 	TouringPlaceDatabaseHelper mDatabaseHelper;
 	LatLng tpLatLng;
@@ -30,7 +31,7 @@ public class NewStoreFormActivity extends Activity {
 	    // TODO Auto-generated method stub
 	    super.onCreate(savedInstanceState);
 	    
-	    this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+	    //this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
 	    setContentView(R.layout.activity_newstoreform);
 	    
