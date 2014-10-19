@@ -34,5 +34,12 @@
     </style>
 
     <style name="ButtonBarButton" />
+    
+    <style name="loginButton">
+    <item name="android:textSize">14sp</item>
+    <item name="android:background">@drawable/state_button_login_facebook</item>
+    <item name="android:textColor">#EEEEEE</item>
+    <item name="android:layout_gravity">center_horizontal</item>
+</style>
 
 </resources>

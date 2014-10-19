@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fb="http://schemas.android.com/apk/res-auto"
     android:id="@+id/scroll"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:fillViewport="true">
+    android:fillViewport="true" >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -58,7 +59,6 @@
 
                 <EditText
                     android:id="@+id/login_stouring"
-                    android:visibility="gone"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="20dip"
@@ -68,6 +68,7 @@
                     android:singleLine="true"
                     android:textColor="#EEEEEE"
                     android:textColorHint="#EEEEEE"
+                    android:visibility="gone"
                     android:color="#EEEEEE" />
 
                 <LinearLayout
@@ -78,7 +79,6 @@
                     <EditText
                         android:id="@+id/mdp_stouring"
                         android:layout_width="0dp"
-                        android:visibility="gone"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="20dip"
                         android:layout_marginTop="2dip"
@@ -88,19 +88,30 @@
                         android:singleLine="true"
                         android:textColor="#EEEEEE"
                         android:textColorHint="#EEEEEE"
+                        android:visibility="gone"
                         android:color="#EEEEEE" />
 
                     <Button
                         android:id="@+id/buttonOk"
-                        android:visibility="gone"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.2"
                         android:background="@android:color/transparent"
-                        android:textColor="#EEEEEE" />
+                        android:textColor="#EEEEEE"
+                        android:visibility="gone" />
                 </LinearLayout>
 
-                <Button
+                <com.facebook.widget.LoginButton
+                    android:id="@+id/buttonfacebook"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="17dp"
+                    fb:login_text="Connexion via Facebook"
+                    fb:logout_text="Déconnexion"
+                    style="@style/loginButton"/>
+
+<!--                 <Button
                     android:id="@+id/buttonfacebook"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -113,7 +124,7 @@
                     android:paddingRight="8dp"
                     android:paddingTop="8dp"
                     android:textColor="#EEEEEE"
-                    android:textSize="14sp" />
+                    android:textSize="14sp" /> -->
 
                 <Button
                     android:id="@+id/buttontwitter"

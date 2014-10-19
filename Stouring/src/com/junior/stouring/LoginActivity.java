@@ -1,25 +1,36 @@
 package com.junior.stouring;
 
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GooglePlayServicesUtil;
-import com.google.android.gms.common.SignInButton;
-
-import com.google.android.gms.plus.model.people.Person;
-
-import android.app.ActionBar.LayoutParams;
+import twitter4j.Twitter;
+import twitter4j.TwitterException;
+import twitter4j.TwitterFactory;
+import twitter4j.User;
+import twitter4j.auth.AccessToken;
+import twitter4j.auth.RequestToken;
+import twitter4j.conf.Configuration;
+import twitter4j.conf.ConfigurationBuilder;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.StrictMode;
+import android.text.Html;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ScrollView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
-public class LoginActivity extends Activity implements OnClickListener
-		{
+import com.facebook.*;
+import com.facebook.model.*;
+
+public class LoginActivity extends Activity implements OnClickListener {
 
 	private EditText loginStouring;
 	private EditText mdpStouring;
@@ -27,17 +38,31 @@ public class LoginActivity extends Activity implements OnClickListener
 
 	SessionManager session;
 
+	
+	SharedPreferences pref;
+    private static String CONSUMER_KEY = "yKOma854G2LHcPKzbd4q1Os6J";
+    private static String CONSUMER_SECRET = "hfFJwl3N7QZMDBHfRqQDl0CkVey3AvX26Gh8u41pERjGICXIdM";
+	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
+		
+		
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
 		setContentView(R.layout.activity_login);
+		
+		pref = getPreferences(0);
+        SharedPreferences.Editor edit = pref.edit();
+        edit.putString("CONSUMER_KEY", CONSUMER_KEY);
+        edit.putString("CONSUMER_SECRET", CONSUMER_SECRET);
+        edit.commit();
 
 		loginStouring = (EditText) findViewById(R.id.login_stouring);
 		mdpStouring = (EditText) findViewById(R.id.mdp_stouring);
 		buttonOk = (Button) findViewById(R.id.buttonOk);
+
 		session = new SessionManager(getApplicationContext());
 
 		Button accountcreator = (Button) findViewById(R.id.buttonstouring);
@@ -104,18 +129,30 @@ public class LoginActivity extends Activity implements OnClickListener
 
 		Button login = (Button) findViewById(R.id.buttonfacebook);
 		login.setText("Connexion via Facebook");
-		login.setOnClickListener(new View.OnClickListener() {
+		// login.setOnClickListener(new View.OnClickListener() {
+		// @Override
+		// public void onClick(View v) {
+		//
+		// Intent launchTouringList = new Intent(LoginActivity.this,
+		// TouringListActivity.class);
+		// startActivity(launchTouringList);
+		// }
+		// });
+
+		// Twitter Auth
+		Button loginTwitter = (Button) findViewById(R.id.buttontwitter);
+		loginTwitter.setText("Connexion via Twitter");
+
+		loginTwitter.setOnClickListener(new View.OnClickListener() {
+
 			@Override
 			public void onClick(View v) {
+				
 
-				Intent launchTouringList = new Intent(LoginActivity.this,
-						TouringListActivity.class);
-				startActivity(launchTouringList);
 			}
 		});
 
-		Button loginTwitter = (Button) findViewById(R.id.buttontwitter);
-		loginTwitter.setText("Connexion via Twitter");
+		
 
 		Button loginGoogle = (Button) findViewById(R.id.buttongoogle);
 		loginGoogle.setText("Connexion via Google");
@@ -145,5 +182,13 @@ public class LoginActivity extends Activity implements OnClickListener
 
 	}
 
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		Session.getActiveSession().onActivityResult(this, requestCode,
+				resultCode, data);
+	}
+
+	
 
 }

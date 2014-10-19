@@ -7,14 +7,10 @@ import com.junior.stouring.NewStoreFormActivity;
 import com.junior.stouring.NewUserFormActivity;
 import com.junior.stouring.R;
 import com.junior.stouring.SessionManager;
-import com.junior.stouring.TouringListActivity;
 import com.junior.stouring.slidingmenuadapter.NavDrawerListAdapter;
 import com.junior.stouring.slidingmenumodel.NavDrawerItem;
 
 import android.annotation.TargetApi;
-import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentManager;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
@@ -31,8 +27,6 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 public class DrawerActivity extends FragmentActivity{
 	
