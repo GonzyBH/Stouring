@@ -8,6 +8,7 @@
     <string name="touringlistactivity_name">TouringList</string>
     <string name="newconnexionactivity_name">NewConnexion</string>
     <string name="tpdisplayer_name">Vue du Restaurant</string>
+    <string name="tpmodifier_name">Mon espace établissement</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="app_desc">Smart touring and shopping</string>
@@ -35,7 +36,7 @@
         <item >Inscription</item>
         <item >Communities</item>
         <item >Pages</item>
-        <item >What\'s Hot</item>
+        <item >Deconnexion</item>
     </string-array>
      
     <!-- Nav Drawer List Item Icons -->

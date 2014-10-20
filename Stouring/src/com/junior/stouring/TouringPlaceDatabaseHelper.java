@@ -164,7 +164,56 @@ public class TouringPlaceDatabaseHelper extends SQLiteOpenHelper {
 		SQLiteDatabase db = getWritableDatabase();
 		db.insert(TABLE_TOURING_PLACE, null, values);
 	}
-
+	
+	/**
+	 * Get TouringPlace from name
+	 */
+	public TouringPlace getTouringPlaceFromDB(String pName) {
+		
+		SQLiteDatabase db = this.getReadableDatabase();
+		String selectQuery = "SELECT  * FROM " + TABLE_TOURING_PLACE + " WHERE "
+	            + COLUMN_NAME + " = '" + pName + "'";
+		
+		Log.i("Query", selectQuery);
+		
+		Cursor c = db.rawQuery(selectQuery, null);
+		
+		if (c != null)
+	        c.moveToFirst();
+	 
+	    TouringPlace tp = new TouringPlace("", 0, "", 0, 0);
+	    tp.setName(c.getString(c.getColumnIndex(COLUMN_NAME)));
+	    tp.setMark(c.getFloat(c.getColumnIndex(COLUMN_RATING)));
+	    tp.setType(c.getString(c.getColumnIndex(COLUMN_TYPE)));
+	    tp.setLatitude(c.getDouble(c.getColumnIndex(COLUMN_LATITUDE)));
+	    tp.setLongitude(c.getDouble(c.getColumnIndex(COLUMN_LONGITUDE)));
+	    
+	    return tp;
+	}
+	
+	/**
+	 * Check if a Tourist Place exists from name
+	 */
+	public Boolean checkIfTouringPlaceExists(String pName) {
+			
+		SQLiteDatabase db = this.getReadableDatabase();
+		String selectQuery = "SELECT  * FROM " + TABLE_TOURING_PLACE + " WHERE "
+	            + COLUMN_NAME + " = '" + pName + "'";
+		
+		Log.i("Query", selectQuery);
+		
+		Cursor c = db.rawQuery(selectQuery, null);
+		c.moveToLast();
+		int count = c.getCount();
+		
+		if (count != 0) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
 	/**
 	 * Add a new user
 	 */

@@ -64,6 +64,10 @@
             android:name=".DrawerActivity"
             android:label="@string/loginactivity_name" >
         </activity>
+        <activity
+            android:name=".TouringPlaceModifierActivity"
+            android:label="@string/tpmodifier_name" >
+        </activity>
 
         <!-- Goolge Maps API Key -->
         <meta-data

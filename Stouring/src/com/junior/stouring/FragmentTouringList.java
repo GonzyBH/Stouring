@@ -69,23 +69,7 @@ public class FragmentTouringList extends ListFragment {
 		 * resources.getDrawable(R.drawable.stouringlogomin)).getBitmap();
 		 */
 
-		/*
-		 * mItems.add(new TouringPlace("France", (float) 4, "Restaurant",
-		 * bitmap,0,54)); mItems.add(new TouringPlace("Allemagne", (float) 3.5,
-		 * "Brasserie", bitmap,0,0)); mItems.add(new TouringPlace("Royaume Uni",
-		 * (float) 2.5, "Pub", bitmap,0,0)); //mItems.add(new
-		 * TouringPlace("Russie", (float) 1.5, bitmap1,0,0)); mItems.add(new
-		 * TouringPlace("Italie", (float) 2.7, "Pizzeria", bitmap,0,0));
-		 */
-
 		mDatabaseHelper.addItems(mItems);
-
-		/*
-		 * TouringPlace USA = new TouringPlace("USA MOTHA FUKA", (float)
-		 * 4.9,"Fast Food", bitmap,56,4);
-		 * 
-		 * mDatabaseHelper.addItem(USA);
-		 */
 
 		mItemstemps = mDatabaseHelper.getAllItems();
 		// mItemstemps = mDatabaseHelper.getPlaceType(type);
@@ -103,13 +87,13 @@ public class FragmentTouringList extends ListFragment {
 	public void onListItemClick(ListView l, View v, int position, long id) {
 		// retrieve theListView item
 		TouringPlace item = mItemstemps.get(position);
-
+		String cName = item.getName();
 		// do something
 		// Toast.makeText(getActivity(), item.getName(),
 		// Toast.LENGTH_SHORT).show();
 		Intent intent = new Intent(getActivity(),
 				TouringPlaceDisplayerActivity.class);
-		intent.putExtra("touringplace", item);
+		intent.putExtra("touringplace", cName);
 		getActivity().startActivityForResult(intent, 1);
 	}
 

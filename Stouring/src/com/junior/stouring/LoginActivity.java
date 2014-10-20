@@ -1,13 +1,6 @@
 package com.junior.stouring;
 
-import twitter4j.Twitter;
-import twitter4j.TwitterException;
-import twitter4j.TwitterFactory;
-import twitter4j.User;
-import twitter4j.auth.AccessToken;
-import twitter4j.auth.RequestToken;
-import twitter4j.conf.Configuration;
-import twitter4j.conf.ConfigurationBuilder;
+
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -38,6 +31,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 
 	SessionManager session;
 
+	TouringPlaceDatabaseHelper mDatabaseHelper;
 	
 	SharedPreferences pref;
     private static String CONSUMER_KEY = "yKOma854G2LHcPKzbd4q1Os6J";
@@ -64,6 +58,8 @@ public class LoginActivity extends Activity implements OnClickListener {
 		buttonOk = (Button) findViewById(R.id.buttonOk);
 
 		session = new SessionManager(getApplicationContext());
+		
+		mDatabaseHelper = new TouringPlaceDatabaseHelper(this);
 
 		Button accountcreator = (Button) findViewById(R.id.buttonstouring);
 		accountcreator.setText("Connexion via Stouring");
@@ -94,17 +90,22 @@ public class LoginActivity extends Activity implements OnClickListener {
 					// sample data
 					// email = test
 					// password = test
-					if (email.equals("test") && password.equals("test")) {
-
+					//if (email.equals("test") && password.equals("test")) {
+					Boolean exist = false;
+					Log.i("Query1", String.valueOf(exist));
+					exist = mDatabaseHelper.checkIfTouringPlaceExists(email);
+					Log.i("Query2", String.valueOf(exist));
+					if(exist){
 						// Creating user login session
 						// For testing i am storing name, email as follow
 						// Use user real data
-						session.createLoginSession("Username", email);
+						//session.createLoginSession("Username", email);
 
 						// Staring MainActivity
-						Intent i = new Intent(getApplicationContext(),
-								TouringListActivity.class);
-						startActivity(i);
+						Intent intent = new Intent(LoginActivity.this,
+								TouringPlaceModifierActivity.class); 
+						intent.putExtra("touringplace", email);
+						LoginActivity.this.startActivityForResult(intent, 1);
 						finish();
 
 					} else {
@@ -159,6 +160,15 @@ public class LoginActivity extends Activity implements OnClickListener {
 
 		Button loginLinkedin = (Button) findViewById(R.id.buttonlinked);
 		loginLinkedin.setText("Connexion via LinkedIn");
+		loginLinkedin.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+			
+				Intent launchTouringList = new Intent(LoginActivity.this,
+				TouringListActivity.class);
+				startActivity(launchTouringList);
+			}
+		});
 
 	}
 

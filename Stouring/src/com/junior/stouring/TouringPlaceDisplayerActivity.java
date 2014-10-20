@@ -50,7 +50,10 @@ public class TouringPlaceDisplayerActivity extends DrawerActivity{
         
         
     
-        final TouringPlace mTouringPlace = getIntent().getExtras().getParcelable("touringplace");
+        final String mTouringPlaceName = getIntent().getExtras().getString("touringplace");
+        
+        TouringPlace mTouringPlace = mDatabaseHelper.getTouringPlaceFromDB(mTouringPlaceName);
+        
         TextView displayPlaceInfo = (TextView) findViewById(R.id.displaytp);
         displayPlaceInfo.setText(
         "User : " + "\n"
@@ -80,7 +83,7 @@ public class TouringPlaceDisplayerActivity extends DrawerActivity{
 			@Override
 				public void onClick(View v) {
 					//Toast.makeText(getBaseContext(), "YOLO", Toast.LENGTH_SHORT).show();
-					mDatabaseHelper.deleteItem(mTouringPlace);
+					//mDatabaseHelper.deleteTouringPlaceFromDB(mTouringPlace);
 					//Intent returnIntent = new Intent();
 					//setResult(RESULT_DELETE, returnIntent);
 					finish();

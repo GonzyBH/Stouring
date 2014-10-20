@@ -216,6 +216,10 @@ public class DrawerActivity extends FragmentActivity{
     	case 2:
     		intentTarget = NewUserFormActivity.class;
     		break;
+    	case 5:
+    		intentTarget = LoginActivity.class;
+    		session.logoutUser();
+    		break;
     		
     	default:
     		intentTarget = LoginActivity.class;
