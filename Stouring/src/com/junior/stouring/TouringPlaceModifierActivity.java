@@ -1,58 +1,112 @@
 package com.junior.stouring;
 
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.annotation.TargetApi;
+import android.app.ActionBar;
+import android.app.ActionBar.Tab;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 
 import com.junior.stouring.drawer.DrawerActivity;
+import com.junior.stouring.tabsswipeadapter.TabsPagerAdapter;
 
-public class TouringPlaceModifierActivity extends DrawerActivity{
+public class TouringPlaceModifierActivity extends DrawerActivity implements ActionBar.TabListener{
 	
 	TouringPlaceDatabaseHelper mDatabaseHelper;
 	
 	SessionManager session;
 	
+	private ViewPager viewPager;
+    private TabsPagerAdapter mAdapter;
+    private ActionBar actionBar;
+    
+    
+    public static FragmentManager fragmentManager;
+	
+	@TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tp_modifier);
         
+        fragmentManager = getFragmentManager();
+        
         mDatabaseHelper = new TouringPlaceDatabaseHelper(getBaseContext());
         
-        
         final String mTouringPlaceName = getIntent().getExtras().getString("touringplace");
-        
         TouringPlace mTouringPlace = mDatabaseHelper.getTouringPlaceFromDB(mTouringPlaceName);
         
-        TextView displayPlaceInfo = (TextView) findViewById(R.id.displaytp);
-        displayPlaceInfo.setText(
-        "User : " + "\n"
-        + " FirstName : " + mTouringPlace.getName() + "\n"
-        + " Mark : " + mTouringPlace.getMark()  + "\n" 
-        + " Type : " + mTouringPlace.getType()  + "\n"
-        + " Latitude : " + mTouringPlace.getLatitude()  + "\n" 
-        + " Longitude : " + mTouringPlace.getLongitude());
+        tabInitialization(mTouringPlace);
         
+	}
         
-        session = new SessionManager(getApplicationContext());
-		if (session.isLoggedIn()) {
-			// Button logout
-			Button btnLogout = (Button) findViewById(R.id.btnunlog);
+	
+	public void tabInitialization(TouringPlace mTouringPlace) {
+		
+		// Initilization
+        viewPager = (ViewPager) findViewById(R.id.pager);
+        actionBar = getActionBar();
+        mAdapter = new TabsPagerAdapter(getSupportFragmentManager(), mTouringPlace);
+ 
+        viewPager.setAdapter(mAdapter);
+        //actionBar.setHomeButtonEnabled(false);
+        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);       
+ 
+        // Adding Tabs
+        String[] tabs = { mTouringPlace.getName(), "Offres", "Carte" };
+        for (String tab_name : tabs) {
+            actionBar.addTab(actionBar.newTab().setText(tab_name)
+                    .setTabListener(this));
+		
+        }
+        
+        /**
+         * on swiping the viewpager make respective tab selected
+         * */
+        viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+         
+            @Override
+            public void onPageSelected(int position) {
+                // on changing the page
+                // make respected tab selected
+                actionBar.setSelectedNavigationItem(position);
+            }
+         
+            @Override
+            public void onPageScrolled(int arg0, float arg1, int arg2) {
+            }
+         
+            @Override
+            public void onPageScrollStateChanged(int arg0) {
+            }
+        });
+	}
+	
+	
+       
+	@Override
+	public void onTabSelected(Tab tab, FragmentTransaction ft) {
+		// on tab selected
+        // show respected fragment view
+        viewPager.setCurrentItem(tab.getPosition());
+		
+	}
 
-			btnLogout.setOnClickListener(new View.OnClickListener() {
+	@Override
+	public void onTabUnselected(Tab tab, FragmentTransaction ft) {
+		// TODO Auto-generated method stub
+		
+	}
 
-				@Override
-				public void onClick(View arg0) {
-					// Clear the session data
-					// This will clear all session data and
-					// redirect user to LoginActivity
-					session.logoutUser();
-					finish();
-				}
-			});
-		}
-        
+	@Override
+	public void onTabReselected(Tab tab, FragmentTransaction ft) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

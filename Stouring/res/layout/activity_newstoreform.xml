@@ -78,12 +78,14 @@
           
           
           <!--  Web Label -->
-          <TextView android:layout_width="fill_parent"
+          <TextView 
+              	android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dip"
                 android:textColor="#372c24"
                 android:text="Adresse Web"/>
-          <EditText android:layout_width="fill_parent"
+          <EditText	android:id="@+id/et_email"
+				android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dip"
                 android:singleLine="true"/>

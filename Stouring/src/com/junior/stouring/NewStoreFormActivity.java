@@ -12,6 +12,7 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
 import android.provider.SyncStateContract.Constants;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -39,6 +40,8 @@ public class NewStoreFormActivity extends DrawerActivity {
 	    
 	    final EditText etAddress = (EditText)findViewById(R.id.et_address);
 	    
+	    final EditText etEmail = (EditText)findViewById(R.id.et_email);
+	    
 	    final EditText etCity = (EditText)findViewById(R.id.et_city);
 		
 	    final Spinner spType = (Spinner)findViewById(R.id.spinnerType);
@@ -50,17 +53,24 @@ public class NewStoreFormActivity extends DrawerActivity {
 		bValidate.setOnClickListener(new View.OnClickListener() {
 			@Override
 				public void onClick(View v) {
-					String tpName = etName.getText().toString();
-					
-					String sType = spType.getSelectedItem().toString();
-					
-					String tpAddress = etAddress.getText().toString();
-					String tpCity = etCity.getText().toString();
-					String fAddress = tpAddress+", "+tpCity;
-					tpLatLng = getLatLngFromPosition(fAddress);
-					TouringPlace newTP = new TouringPlace(tpName, (float) 0, sType, tpLatLng.latitude, tpLatLng.longitude);
-					Toast.makeText(getBaseContext(), fAddress, Toast.LENGTH_SHORT).show();
-					mDatabaseHelper.addItem(newTP);
+					if(isValidEmail(etEmail.getText().toString())) {
+						String tpName = etName.getText().toString();
+						
+						String sType = spType.getSelectedItem().toString();
+						
+						String tpAddress = etAddress.getText().toString();
+						String tpCity = etCity.getText().toString();
+						String fAddress = tpAddress+", "+tpCity;
+						tpLatLng = getLatLngFromPosition(fAddress);
+						TouringPlace newTP = new TouringPlace(tpName, (float) 0, sType, tpLatLng.latitude, tpLatLng.longitude);
+						Toast.makeText(getBaseContext(), fAddress, Toast.LENGTH_SHORT).show();
+						mDatabaseHelper.addItem(newTP);
+					}else{
+						Toast.makeText(
+								getBaseContext(),
+								"Adresse email invalide",
+								Toast.LENGTH_SHORT).show();
+					}
 			}
 		});
 	}
@@ -83,5 +93,9 @@ public class NewStoreFormActivity extends DrawerActivity {
   	    LatLng platlng = new LatLng(latitude, longitude);
   	    return platlng;
   }
+	
+	public final static boolean isValidEmail(CharSequence target) {
+		  return !TextUtils.isEmpty(target) && android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
+		}
 }
 
