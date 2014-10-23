@@ -1,12 +1,9 @@
 package com.junior.stouring;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import android.content.Intent;
-import android.content.res.Resources;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
@@ -14,8 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.Toast;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
 
 public class FragmentTouringList extends ListFragment {
 
@@ -54,7 +49,6 @@ public class FragmentTouringList extends ListFragment {
 		// initialize the database helper
 		mDatabaseHelper = new TouringPlaceDatabaseHelper(getActivity());
 
-		String type = "Hotel";
 
 		// initialize the items list
 		mItems = mDatabaseHelper.getAllItems();

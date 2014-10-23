@@ -6,16 +6,11 @@ import java.util.ArrayList;
 import com.google.android.gms.maps.model.LatLng;
 import com.junior.stouring.drawer.DrawerActivity;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
-import android.provider.SyncStateContract.Constants;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;

@@ -2,13 +2,10 @@ package com.junior.stouring;
 
 import com.junior.stouring.drawer.DrawerActivity;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 public class NewUserFormActivity extends DrawerActivity {
