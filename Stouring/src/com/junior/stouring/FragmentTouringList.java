@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Intent;
-import android.content.res.Resources;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
@@ -56,8 +54,6 @@ public class FragmentTouringList extends ListFragment {
 		mItems = mDatabaseHelper.getAllItems();
 
 		mItems = new ArrayList<TouringPlace>();
-
-		Resources resources = getResources();
 		
 		/*Bitmap bitmap = (Bitmap)((BitmapDrawable)
 		resources.getDrawable(R.drawable.sac_toile_stouring)).getBitmap();

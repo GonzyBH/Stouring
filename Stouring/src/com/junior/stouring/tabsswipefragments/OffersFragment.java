@@ -5,11 +5,9 @@ import com.junior.stouring.TouringPlace;
 import com.junior.stouring.TouringPlaceDatabaseHelper;
 
 import android.content.Intent;
-import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -20,7 +18,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class OffersFragment extends Fragment{
 	
@@ -35,8 +32,6 @@ public class OffersFragment extends Fragment{
     private String selectedImagePath;
     
     TouringPlace tP;
-    
-    private Uri fileUri; // file url to store image/video
 	
 	TouringPlaceDatabaseHelper mDatabaseHelper;
 
