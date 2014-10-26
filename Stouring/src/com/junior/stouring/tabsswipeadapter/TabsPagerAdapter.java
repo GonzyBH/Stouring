@@ -2,7 +2,7 @@ package com.junior.stouring.tabsswipeadapter;
 
 import com.junior.stouring.TouringPlace;
 import com.junior.stouring.tabsswipefragments.StoreInfoFragment;
-import com.junior.stouring.tabsswipefragments.TopRatedFragment;
+import com.junior.stouring.tabsswipefragments.OffersFragment;
 import com.junior.stouring.tabsswipefragments.MapSwipeFragment;
 
 import android.os.Bundle;
@@ -28,7 +28,9 @@ public class TabsPagerAdapter extends FragmentPagerAdapter {
         switch (index) {
         case 0:
             // Top Rated fragment activity
-            return new TopRatedFragment();
+        	Fragment OFrag = new OffersFragment();
+        	OFrag.setArguments(bundle);
+            return OFrag;
         case 1:
             // Games fragment activity
         	Fragment SIFrag = new StoreInfoFragment();

@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import com.google.android.gms.maps.model.LatLng;
 import com.junior.stouring.drawer.DrawerActivity;
 
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
@@ -40,6 +43,10 @@ public class NewStoreFormActivity extends DrawerActivity {
 	    final EditText etCity = (EditText)findViewById(R.id.et_city);
 		
 	    final Spinner spType = (Spinner)findViewById(R.id.spinnerType);
+	    
+	    Resources resources = getResources();
+		final Bitmap staticImage = (Bitmap)((BitmapDrawable)
+		resources.getDrawable(R.drawable.sac_toile_stouring)).getBitmap();
 		
 		mDatabaseHelper = new TouringPlaceDatabaseHelper(getBaseContext());
 		
@@ -57,7 +64,8 @@ public class NewStoreFormActivity extends DrawerActivity {
 						String tpCity = etCity.getText().toString();
 						String fAddress = tpAddress+", "+tpCity;
 						tpLatLng = getLatLngFromPosition(fAddress);
-						TouringPlace newTP = new TouringPlace(tpName, (float) 0, sType, tpLatLng.latitude, tpLatLng.longitude);
+						
+						TouringPlace newTP = new TouringPlace(tpName, (float) 0, sType, staticImage, tpLatLng.latitude, tpLatLng.longitude);
 						Toast.makeText(getBaseContext(), fAddress, Toast.LENGTH_SHORT).show();
 						mDatabaseHelper.addItem(newTP);
 					}else{

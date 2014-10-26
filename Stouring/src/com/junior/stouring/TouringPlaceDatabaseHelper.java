@@ -1,5 +1,6 @@
 package com.junior.stouring;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,6 +9,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.util.Log;
 
 public class TouringPlaceDatabaseHelper extends SQLiteOpenHelper {
@@ -27,6 +30,7 @@ public class TouringPlaceDatabaseHelper extends SQLiteOpenHelper {
 	private static final String COLUMN_NAME = "name";
 	private static final String COLUMN_RATING = "rating";
 	private static final String COLUMN_TYPE = "type";
+	private static final String COLUMN_IMAGE = "image";
 	private static final String COLUMN_LATITUDE = "latitude";
 	private static final String COLUMN_LONGITUDE = "longitude";
 
@@ -39,11 +43,14 @@ public class TouringPlaceDatabaseHelper extends SQLiteOpenHelper {
 	// Table Create Statements
 	// TABLE_TOURING_PLACE table create statement
 	private static final String CREATE_TABLE_TOURING_PLACE = "CREATE TABLE "
-			+ TABLE_TOURING_PLACE + "(" + COLUMN_ID
-			+ " INTEGER PRIMARY KEY AUTOINCREMENT," + COLUMN_NAME
-			+ " TEXT UNIQUE NOT NULL," + COLUMN_RATING + " FLOAT NOT NULL,"
-			+ COLUMN_TYPE + " STRING NOT NULL," + COLUMN_LATITUDE
-			+ " DOUBLE NOT NULL," + COLUMN_LONGITUDE + " DOUBLE NOT NULL" + ")";
+			+ TABLE_TOURING_PLACE + "(" 
+			+ COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," 
+			+ COLUMN_NAME + " TEXT UNIQUE NOT NULL,"
+			+ COLUMN_RATING + " FLOAT NOT NULL,"
+			+ COLUMN_TYPE + " STRING NOT NULL,"
+			+ COLUMN_IMAGE + " BLOB," 
+			+ COLUMN_LATITUDE + " DOUBLE NOT NULL," 
+			+ COLUMN_LONGITUDE + " DOUBLE NOT NULL" + ")";
 
 	// TABLE_USER table create statement
 	private static final String CREATE_TABLE_USER = "CREATE TABLE "
@@ -100,7 +107,7 @@ public class TouringPlaceDatabaseHelper extends SQLiteOpenHelper {
 		SQLiteDatabase db = getReadableDatabase();
 		// send query
 		Cursor cursor = db.query(TABLE_TOURING_PLACE, new String[] {
-				COLUMN_NAME, COLUMN_RATING, COLUMN_TYPE, COLUMN_LATITUDE,
+				COLUMN_NAME, COLUMN_RATING, COLUMN_TYPE, COLUMN_IMAGE, COLUMN_LATITUDE,
 				COLUMN_LONGITUDE }, null, null, null, null, null, null); // get
 																			// all
 																			// rows
@@ -108,10 +115,12 @@ public class TouringPlaceDatabaseHelper extends SQLiteOpenHelper {
 			// add items to the list
 			for (cursor.moveToFirst(); cursor.isAfterLast() == false; cursor
 					.moveToNext()) {
+				byte[] bitmapdata = cursor.getBlob(3);
+				Bitmap bitmap = BitmapFactory.decodeByteArray(bitmapdata , 0, bitmapdata .length);
 				items.add(new TouringPlace(cursor.getString(0), Float
-						.parseFloat(cursor.getString(1)), cursor.getString(2),
-						Double.parseDouble(cursor.getString(3)), Double
-								.parseDouble(cursor.getString(4))));
+						.parseFloat(cursor.getString(1)), cursor.getString(2), bitmap,
+						Double.parseDouble(cursor.getString(4)), Double
+								.parseDouble(cursor.getString(5))));
 			}
 			// close the cursor
 			cursor.close();
@@ -153,16 +162,48 @@ public class TouringPlaceDatabaseHelper extends SQLiteOpenHelper {
 	 * Add a new item
 	 */
 	public void addItem(TouringPlace item) {
+		
+		// retrieve bitmap image onto byte array
+		ByteArrayOutputStream stream = new ByteArrayOutputStream();
+		item.getImage().compress(Bitmap.CompressFormat.PNG, 100, stream);
+		byte[] byteImage = stream.toByteArray();
+		
 		// prepare values
 		ContentValues values = new ContentValues();
 		values.put(COLUMN_NAME, item.getName());
 		values.put(COLUMN_RATING, item.getMark());
 		values.put(COLUMN_TYPE, item.getType());
+		values.put(COLUMN_IMAGE, byteImage);
 		values.put(COLUMN_LATITUDE, item.getLatitude());
 		values.put(COLUMN_LONGITUDE, item.getLongitude());
 		// add the row
 		SQLiteDatabase db = getWritableDatabase();
 		db.insert(TABLE_TOURING_PLACE, null, values);
+	}
+	
+	/**
+	 * Update TP	 
+	 */
+	public int updateTP(TouringPlace item) {
+
+		    SQLiteDatabase db = this.getWritableDatabase();
+		    
+		    ByteArrayOutputStream stream = new ByteArrayOutputStream();
+			item.getImage().compress(Bitmap.CompressFormat.PNG, 100, stream);
+			byte[] byteImage = stream.toByteArray();
+		 
+		    ContentValues values = new ContentValues();
+		    values.put(COLUMN_NAME, item.getName());
+			values.put(COLUMN_RATING, item.getMark());
+			values.put(COLUMN_TYPE, item.getType());
+			values.put(COLUMN_IMAGE, byteImage);
+			values.put(COLUMN_LATITUDE, item.getLatitude());
+			values.put(COLUMN_LONGITUDE, item.getLongitude());
+		 
+		    // updating row
+		    return db.update(TABLE_TOURING_PLACE, values, 
+		    		COLUMN_NAME + " = ?",
+		            new String[] { item.getName() });
 	}
 	
 	/**
@@ -182,9 +223,14 @@ public class TouringPlaceDatabaseHelper extends SQLiteOpenHelper {
 	        c.moveToFirst();
 	 
 	    TouringPlace tp = new TouringPlace("", 0, "", 0, 0);
+	    
+	    byte[] bitmapdata = c.getBlob(c.getColumnIndex(COLUMN_IMAGE));
+		Bitmap bitmap = BitmapFactory.decodeByteArray(bitmapdata , 0, bitmapdata .length);
+	    
 	    tp.setName(c.getString(c.getColumnIndex(COLUMN_NAME)));
 	    tp.setMark(c.getFloat(c.getColumnIndex(COLUMN_RATING)));
 	    tp.setType(c.getString(c.getColumnIndex(COLUMN_TYPE)));
+	    tp.setImage(bitmap);
 	    tp.setLatitude(c.getDouble(c.getColumnIndex(COLUMN_LATITUDE)));
 	    tp.setLongitude(c.getDouble(c.getColumnIndex(COLUMN_LONGITUDE)));
 	    

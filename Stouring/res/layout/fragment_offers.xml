@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#fa6a6a" >
+    
+    <TextView 
+        android:id="@+id/tpname"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Design Games Screen"
+        android:textSize="20dp"
+        android:layout_centerInParent="true"/>
+    
+              <!-- Load Picture from gallery button -->
+	<Button android:id="@+id/btnSearchImage"
+       	android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:layout_margin="10dp"
+  		android:background="@drawable/button_teal_shadow"
+    	android:textColor="#FFFFFF"
+   		android:layout_marginTop="10dip"
+   		android:gravity="center"
+   		android:layout_below="@id/tpname"/>
+	
+	<!-- Load Picture from Camera button -->
+	<Button android:id="@+id/btnTakeImage"
+       	android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:layout_margin="10dp"
+  		android:background="@drawable/button_teal_shadow"
+    	android:textColor="#FFFFFF"
+   		android:layout_marginTop="10dip"
+   		android:gravity="center"
+   		android:layout_below="@id/btnSearchImage"/>
+    
+
+</RelativeLayout>
