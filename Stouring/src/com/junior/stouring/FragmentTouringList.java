@@ -1,18 +1,11 @@
 package com.junior.stouring;
 
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-
-
-
-
-
 
 
 import android.app.ProgressDialog;
