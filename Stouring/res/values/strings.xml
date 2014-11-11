@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	
+
     <string name="app_id">1433080166951942</string>
     <string name="app_name">Stouring</string>
     <string name="loginactivity_name">Stouring</string>
@@ -28,17 +28,17 @@
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="title_activity_user_list">UserListActivity</string>
-    
+
     <!-- Nav Drawer Menu Items -->
     <string-array name="nav_drawer_items">
-        <item >Accueil</item>
-        <item >Ajouter un établissement</item>
-        <item >Inscription</item>
-        <item >Communities</item>
-        <item >Pages</item>
-        <item >Deconnexion</item>
+        <item>Accueil</item>
+        <item>Ajouter un établissement</item>
+        <item>Inscription</item>
+        <item>Communities</item>
+        <item>Pages</item>
+        <item>Deconnexion</item>
     </string-array>
-     
+
     <!-- Nav Drawer List Item Icons -->
     <!-- Keep them in order as the titles are in -->
     <array name="nav_drawer_icons">
@@ -49,8 +49,9 @@
         <item>@drawable/logostouring</item>
         <item>@drawable/logotwitter</item>
     </array>
-     
+
     <!-- Content Description -->
     <string name="desc_list_item_icon">Item Icon</string>
+    <string name="title_activity_list_from_db">ListFromDBActivity</string>
 
 </resources>

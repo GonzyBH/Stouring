@@ -39,12 +39,10 @@ public class TouringPlaceDisplayerActivity extends DrawerActivity{
         
         mDatabaseHelper = new TouringPlaceDatabaseHelper(getBaseContext());
         
-        
-        
     
-        final String mTouringPlaceName = getIntent().getExtras().getString("touringplace");
+        final int mTouringPlaceId = getIntent().getExtras().getInt("placeId");
         
-        TouringPlace mTouringPlace = mDatabaseHelper.getTouringPlaceFromDB(mTouringPlaceName);
+        TouringPlace mTouringPlace = mDatabaseHelper.getTouringPlaceFromDB(mTouringPlaceId);
         
         TextView displayPlaceInfo = (TextView) findViewById(R.id.displaytp);
         displayPlaceInfo.setText(

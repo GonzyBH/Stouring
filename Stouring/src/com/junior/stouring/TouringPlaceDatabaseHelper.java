@@ -14,6 +14,8 @@ import android.graphics.BitmapFactory;
 import android.util.Log;
 
 public class TouringPlaceDatabaseHelper extends SQLiteOpenHelper {
+	
+	private static String url = "http://stouring.mobi/?db_api=place&request=ALL_PLACES";
 
 	// Database Version
 	private static final int DATABASE_VERSION = 2;
@@ -44,8 +46,8 @@ public class TouringPlaceDatabaseHelper extends SQLiteOpenHelper {
 	// TABLE_TOURING_PLACE table create statement
 	private static final String CREATE_TABLE_TOURING_PLACE = "CREATE TABLE "
 			+ TABLE_TOURING_PLACE + "(" 
-			+ COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," 
-			+ COLUMN_NAME + " TEXT UNIQUE NOT NULL,"
+			+ COLUMN_ID + " INTEGER UNIQUE," 
+			+ COLUMN_NAME + " TEXT NOT NULL,"
 			+ COLUMN_RATING + " FLOAT NOT NULL,"
 			+ COLUMN_TYPE + " STRING NOT NULL,"
 			+ COLUMN_IMAGE + " BLOB," 
@@ -100,14 +102,18 @@ public class TouringPlaceDatabaseHelper extends SQLiteOpenHelper {
 	/**
 	 * retrieve all items from the database
 	 */
-	public List<TouringPlace> getAllItems() {
+	public ArrayList<TouringPlace> getAllItems() {
 		// initialize the list
-		List<TouringPlace> items = new ArrayList<TouringPlace>();
+		ArrayList<TouringPlace> items = new ArrayList<TouringPlace>();
 		// obtain a readable database
 		SQLiteDatabase db = getReadableDatabase();
+		
+//		ServiceHandler sh = new ServiceHandler();
+//		String jsonStr = sh.makeServiceCall(url, ServiceHandler.GET);
+		
 		// send query
 		Cursor cursor = db.query(TABLE_TOURING_PLACE, new String[] {
-				COLUMN_NAME, COLUMN_RATING, COLUMN_TYPE, COLUMN_IMAGE, COLUMN_LATITUDE,
+				COLUMN_ID, COLUMN_NAME, COLUMN_RATING, COLUMN_TYPE, COLUMN_IMAGE, COLUMN_LATITUDE,
 				COLUMN_LONGITUDE }, null, null, null, null, null, null); // get
 																			// all
 																			// rows
@@ -117,10 +123,10 @@ public class TouringPlaceDatabaseHelper extends SQLiteOpenHelper {
 					.moveToNext()) {
 				byte[] bitmapdata = cursor.getBlob(3);
 				Bitmap bitmap = BitmapFactory.decodeByteArray(bitmapdata , 0, bitmapdata .length);
-				items.add(new TouringPlace(cursor.getString(0), Float
-						.parseFloat(cursor.getString(1)), cursor.getString(2), bitmap,
-						Double.parseDouble(cursor.getString(4)), Double
-								.parseDouble(cursor.getString(5))));
+				items.add(new TouringPlace(cursor.getInt(0), cursor.getString(1), Float
+						.parseFloat(cursor.getString(2)), cursor.getString(3), bitmap,
+						Double.parseDouble(cursor.getString(5)), Double
+								.parseDouble(cursor.getString(6))));
 			}
 			// close the cursor
 			cursor.close();
@@ -131,32 +137,32 @@ public class TouringPlaceDatabaseHelper extends SQLiteOpenHelper {
 		return items;
 	}
 
-	// PAR MATHIEU
-	public List<TouringPlace> getPlaceType(String sType) {
-		// initialize the list
-		List<TouringPlace> items = new ArrayList<TouringPlace>();
-		// obtain a readable database
-		SQLiteDatabase db = getReadableDatabase();
-		// send query
-		Cursor cursor = db.rawQuery("select * from TP_List where type = ?",
-				new String[] { sType });
-
-		if (cursor != null) {
-			// add items to the list
-			for (cursor.moveToFirst(); cursor.isAfterLast() == false; cursor
-					.moveToNext()) {
-				items.add(new TouringPlace(cursor.getString(1), Float
-						.parseFloat(cursor.getString(2)), cursor.getString(3),
-						Double.parseDouble(cursor.getString(4)), Double
-								.parseDouble(cursor.getString(5))));
-			}
-			// close the cursor
-			cursor.close();
-		}
-
-		return items;
-
-	}
+//	// PAR MATHIEU
+//	public List<TouringPlace> getPlaceType(String sType) {
+//		// initialize the list
+//		List<TouringPlace> items = new ArrayList<TouringPlace>();
+//		// obtain a readable database
+//		SQLiteDatabase db = getReadableDatabase();
+//		// send query
+//		Cursor cursor = db.rawQuery("select * from TP_List where type = ?",
+//				new String[] { sType });
+//
+//		if (cursor != null) {
+//			// add items to the list
+//			for (cursor.moveToFirst(); cursor.isAfterLast() == false; cursor
+//					.moveToNext()) {
+//				items.add(new TouringPlace(cursor.getString(1), Float
+//						.parseFloat(cursor.getString(2)), cursor.getString(3),
+//						Double.parseDouble(cursor.getString(4)), Double
+//								.parseDouble(cursor.getString(5))));
+//			}
+//			// close the cursor
+//			cursor.close();
+//		}
+//
+//		return items;
+//
+//	}
 
 	/**
 	 * Add a new item
@@ -170,10 +176,28 @@ public class TouringPlaceDatabaseHelper extends SQLiteOpenHelper {
 		
 		// prepare values
 		ContentValues values = new ContentValues();
+		values.put(COLUMN_ID, item.getId());
 		values.put(COLUMN_NAME, item.getName());
 		values.put(COLUMN_RATING, item.getMark());
 		values.put(COLUMN_TYPE, item.getType());
 		values.put(COLUMN_IMAGE, byteImage);
+		values.put(COLUMN_LATITUDE, item.getLatitude());
+		values.put(COLUMN_LONGITUDE, item.getLongitude());
+		// add the row
+		SQLiteDatabase db = getWritableDatabase();
+		db.insert(TABLE_TOURING_PLACE, null, values);
+	}
+	
+	/**
+	 * Add a new item without image
+	 */
+	public void addItemNoImage(TouringPlace item) {
+		
+		// prepare values
+		ContentValues values = new ContentValues();
+		values.put(COLUMN_NAME, item.getName());
+		values.put(COLUMN_RATING, item.getMark());
+		values.put(COLUMN_TYPE, item.getType());
 		values.put(COLUMN_LATITUDE, item.getLatitude());
 		values.put(COLUMN_LONGITUDE, item.getLongitude());
 		// add the row
@@ -209,11 +233,11 @@ public class TouringPlaceDatabaseHelper extends SQLiteOpenHelper {
 	/**
 	 * Get TouringPlace from name
 	 */
-	public TouringPlace getTouringPlaceFromDB(String pName) {
+	public TouringPlace getTouringPlaceFromDB(int pId) {
 		
 		SQLiteDatabase db = this.getReadableDatabase();
 		String selectQuery = "SELECT  * FROM " + TABLE_TOURING_PLACE + " WHERE "
-	            + COLUMN_NAME + " = '" + pName + "'";
+	            + COLUMN_ID + " = "+ pId;
 		
 		Log.i("Query", selectQuery);
 		
@@ -222,15 +246,17 @@ public class TouringPlaceDatabaseHelper extends SQLiteOpenHelper {
 		if (c != null)
 	        c.moveToFirst();
 	 
-	    TouringPlace tp = new TouringPlace("", 0, "", 0, 0);
+	    TouringPlace tp = new TouringPlace(0, "", 0, "", 0, 0);
 	    
-	    byte[] bitmapdata = c.getBlob(c.getColumnIndex(COLUMN_IMAGE));
-		Bitmap bitmap = BitmapFactory.decodeByteArray(bitmapdata , 0, bitmapdata .length);
+//	    byte[] bitmapdata = c.getBlob(c.getColumnIndex(COLUMN_IMAGE));
+//		Bitmap bitmap = BitmapFactory.decodeByteArray(bitmapdata , 0, bitmapdata .length);
 	    
+	    
+	    tp.setId(pId);
 	    tp.setName(c.getString(c.getColumnIndex(COLUMN_NAME)));
 	    tp.setMark(c.getFloat(c.getColumnIndex(COLUMN_RATING)));
 	    tp.setType(c.getString(c.getColumnIndex(COLUMN_TYPE)));
-	    tp.setImage(bitmap);
+//	    tp.setImage(bitmap);
 	    tp.setLatitude(c.getDouble(c.getColumnIndex(COLUMN_LATITUDE)));
 	    tp.setLongitude(c.getDouble(c.getColumnIndex(COLUMN_LONGITUDE)));
 	    
@@ -244,7 +270,7 @@ public class TouringPlaceDatabaseHelper extends SQLiteOpenHelper {
 			
 		SQLiteDatabase db = this.getReadableDatabase();
 		String selectQuery = "SELECT  * FROM " + TABLE_TOURING_PLACE + " WHERE "
-	            + COLUMN_NAME + " = '" + pName + "'";
+	            + COLUMN_NAME + " = " + pName;
 		
 		Log.i("Query", selectQuery);
 		

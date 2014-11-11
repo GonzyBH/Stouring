@@ -140,7 +140,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 
 			@Override
 			public void onClick(View v) {
-				
+
 
 			}
 		});
@@ -157,7 +157,8 @@ public class LoginActivity extends Activity implements OnClickListener {
 			public void onClick(View v) {
 			
 				Intent launchTouringList = new Intent(LoginActivity.this,
-				TouringListActivity.class);
+//						ListPlacesActivity.class);
+						TouringListActivity.class);
 				startActivity(launchTouringList);
 			}
 		});

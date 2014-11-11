@@ -2,6 +2,7 @@ package com.junior.stouring;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
 
 import com.google.android.gms.maps.model.LatLng;
 import com.junior.stouring.drawer.DrawerActivity;
@@ -65,7 +66,10 @@ public class NewStoreFormActivity extends DrawerActivity {
 						String fAddress = tpAddress+", "+tpCity;
 						tpLatLng = getLatLngFromPosition(fAddress);
 						
-						TouringPlace newTP = new TouringPlace(tpName, (float) 0, sType, staticImage, tpLatLng.latitude, tpLatLng.longitude);
+						Random r = new Random();
+						int i1 = r.nextInt(80000 - 5000) + 5000;
+						
+						TouringPlace newTP = new TouringPlace(i1, tpName, (float) 0, sType, staticImage, tpLatLng.latitude, tpLatLng.longitude);
 						Toast.makeText(getBaseContext(), fAddress, Toast.LENGTH_SHORT).show();
 						mDatabaseHelper.addItem(newTP);
 					}else{

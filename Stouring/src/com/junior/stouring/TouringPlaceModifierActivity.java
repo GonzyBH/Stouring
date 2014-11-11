@@ -35,8 +35,8 @@ public class TouringPlaceModifierActivity extends DrawerActivity implements Acti
         
         mDatabaseHelper = new TouringPlaceDatabaseHelper(getBaseContext());
         
-        final String mTouringPlaceName = getIntent().getExtras().getString("touringplace");
-        TouringPlace mTouringPlace = mDatabaseHelper.getTouringPlaceFromDB(mTouringPlaceName);
+        final int mTouringPlaceId = getIntent().getExtras().getInt("placeId");
+        TouringPlace mTouringPlace = mDatabaseHelper.getTouringPlaceFromDB(mTouringPlaceId);
         
         tabInitialization(mTouringPlace);
         

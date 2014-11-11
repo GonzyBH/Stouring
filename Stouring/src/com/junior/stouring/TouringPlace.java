@@ -7,6 +7,7 @@ import android.os.Parcelable;
 
 public class TouringPlace implements Parcelable, Comparable<TouringPlace>{
 	
+	private int Id;
 	private String Name;
 	private float Mark;
 	private String Type;
@@ -15,6 +16,7 @@ public class TouringPlace implements Parcelable, Comparable<TouringPlace>{
 	private double Longitude;
 
 	public TouringPlace(
+			int pId,
 			String pName,
 			float pMark,
 			String pType,
@@ -23,6 +25,7 @@ public class TouringPlace implements Parcelable, Comparable<TouringPlace>{
 			double pLongitude) 
 	{
 		super();
+		this.Id = pId;
 		this.Name = pName;
 		this.Mark = pMark;
 		this.Type = pType;
@@ -32,6 +35,7 @@ public class TouringPlace implements Parcelable, Comparable<TouringPlace>{
 	}
 	
 	public TouringPlace(
+			int pId,
 			String pName,
 			float pMark,
 			String pType,
@@ -39,6 +43,7 @@ public class TouringPlace implements Parcelable, Comparable<TouringPlace>{
 			double pLongitude) 
 	{
 		super();
+		this.Id = pId;
 		this.Name = pName;
 		this.Mark = pMark;
 		this.Type = pType;
@@ -53,6 +58,10 @@ public class TouringPlace implements Parcelable, Comparable<TouringPlace>{
 		this.Image = in.readParcelable(getClass().getClassLoader());
 		this.Latitude = in.readDouble();
 		this.Longitude = in.readDouble();
+	}
+	
+	public int getId(){
+			return Id;
 	}
 	
 	public String getName(){
@@ -77,6 +86,10 @@ public class TouringPlace implements Parcelable, Comparable<TouringPlace>{
 	
 	public double getLongitude(){
 		return Longitude;
+	}
+	
+	public void setId(int pId){
+		Id = pId;
 	}
 	
 	public void setName(String pName){
