@@ -10,6 +10,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.junior.stouring.drawer.DrawerActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -42,7 +43,11 @@ public class TouringPlaceDisplayerActivity extends DrawerActivity{
     
         final int mTouringPlaceId = getIntent().getExtras().getInt("placeId");
         
+        Log.d("id in displayer","id : " + mTouringPlaceId);
+        
         TouringPlace mTouringPlace = mDatabaseHelper.getTouringPlaceFromDB(mTouringPlaceId);
+        
+        
         
         TextView displayPlaceInfo = (TextView) findViewById(R.id.displaytp);
         displayPlaceInfo.setText(

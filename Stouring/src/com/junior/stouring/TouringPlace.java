@@ -52,6 +52,7 @@ public class TouringPlace implements Parcelable, Comparable<TouringPlace>{
 	}
 	
 	public TouringPlace(Parcel in) {
+		this.Id = in.readInt();
 		this.Name = in.readString();
 		this.Mark = in.readFloat();
 		this.Type = in.readString();
@@ -125,6 +126,7 @@ public class TouringPlace implements Parcelable, Comparable<TouringPlace>{
 	@Override
 	public void writeToParcel(Parcel dest, int flags) {
 		// TODO Auto-generated method stub
+		dest.writeInt(Id);
 		dest.writeString(Name);
 		dest.writeFloat(Mark);
 		dest.writeString(Type);

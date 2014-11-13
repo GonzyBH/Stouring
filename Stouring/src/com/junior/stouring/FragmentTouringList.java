@@ -28,7 +28,7 @@ public class FragmentTouringList extends ListFragment {
 	private static String url = "http://stouring.mobi/?db_api=place&request=ALL_PLACES";
 
 	private static final String TAG_CONTACTS = "places";
-	private static final String TAG_VID = "vid";
+	private static final String TAG_NID = "nid";
 	private static final String TAG_NAME = "name";
 	private static final String TAG_ADDRESS = "address";
 	private static final String TAG_PHONE = "phone";
@@ -83,7 +83,7 @@ public class FragmentTouringList extends ListFragment {
 			TouringPlace item = items.get(position);
 			int cId = item.getId();
 			
-			Log.d("id retourné", "id : " + cId);
+			Log.d("on list item click ", "id : " + cId + " position : " + position);
 			// do something
 			// Toast.makeText(getActivity(), item.getName(),
 			// Toast.LENGTH_SHORT).show();
@@ -151,7 +151,7 @@ public class FragmentTouringList extends ListFragment {
 
 
 							String name = c.getString(TAG_NAME);
-							int id = c.getInt(TAG_VID);
+							int id = c.getInt(TAG_NID);
 							String address = c.getString(TAG_ADDRESS);
 							c.getString(TAG_PHONE);
 

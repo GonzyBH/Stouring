@@ -195,6 +195,7 @@ public class TouringPlaceDatabaseHelper extends SQLiteOpenHelper {
 		
 		// prepare values
 		ContentValues values = new ContentValues();
+		values.put(COLUMN_ID,item.getId());
 		values.put(COLUMN_NAME, item.getName());
 		values.put(COLUMN_RATING, item.getMark());
 		values.put(COLUMN_TYPE, item.getType());
