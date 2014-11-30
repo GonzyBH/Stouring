@@ -15,7 +15,7 @@ import android.util.Log;
 
 public class TouringPlaceDatabaseHelper extends SQLiteOpenHelper {
 	
-	private static String url = "http://stouring.mobi/?db_api=place&request=ALL_PLACES";
+	//private static String url = "http://stouring.mobi/?db_api=place&request=ALL_PLACES";
 
 	// Database Version
 	private static final int DATABASE_VERSION = 2;

@@ -25,14 +25,14 @@ import android.widget.Toast;
 
 public class FragmentTouringList extends ListFragment {
 
-	private static String url = "http://stouring.mobi/?db_api=place&request=ALL_PLACES";
+	private static String url = "http://api.stouring.mobi/?db_api=place&request=ALL_PLACES";
 
 	private static final String TAG_CONTACTS = "places";
 	private static final String TAG_NID = "nid";
 	private static final String TAG_NAME = "name";
-	private static final String TAG_ADDRESS = "address";
+	//private static final String TAG_ADDRESS = "address";
 	private static final String TAG_PHONE = "phone";
-	private static final String TIMER = "";
+	//private static final String TIMER = "";
 
 	JSONArray contacts = null;
 
@@ -152,7 +152,7 @@ public class FragmentTouringList extends ListFragment {
 
 							String name = c.getString(TAG_NAME);
 							int id = c.getInt(TAG_NID);
-							String address = c.getString(TAG_ADDRESS);
+							//String address = c.getString(TAG_ADDRESS);
 							c.getString(TAG_PHONE);
 
 
