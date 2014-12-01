@@ -7,7 +7,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -32,6 +31,7 @@ public class FragmentTouringList extends ListFragment {
 	private static final String TAG_NAME = "name";
 	//private static final String TAG_ADDRESS = "address";
 	private static final String TAG_PHONE = "phone";
+	private static final String TAG_RATING = "rating";
 	//private static final String TIMER = "";
 
 	JSONArray contacts = null;
@@ -54,7 +54,6 @@ public class FragmentTouringList extends ListFragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		Toast.makeText(getActivity(), "CREATEVIEW", Toast.LENGTH_SHORT).show();
 		return inflater.inflate(R.layout.activity_fragment_touringlist,
 				container, false);
 
@@ -63,14 +62,12 @@ public class FragmentTouringList extends ListFragment {
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		Toast.makeText(getActivity(), "CREATE", Toast.LENGTH_SHORT).show();
 
 	}
 
 	@Override
 	public void onViewCreated(View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
-		Toast.makeText(getActivity(), "VIEW", Toast.LENGTH_SHORT).show();
 
 		new GetPlaces().execute();
 
@@ -154,10 +151,12 @@ public class FragmentTouringList extends ListFragment {
 							int id = c.getInt(TAG_NID);
 							//String address = c.getString(TAG_ADDRESS);
 							c.getString(TAG_PHONE);
+							
+							int rating = c.getInt(TAG_RATING)/20;
 
 
 							TouringPlace newTP = new TouringPlace(id, DatabaseUtils.sqlEscapeString(name),
-									4,"place", 12, 12);
+									rating,"place", 12, 12);
 
 							//ajout pour affichage
 							items.add(newTP);
@@ -206,9 +205,14 @@ public class FragmentTouringList extends ListFragment {
 			// remove the dividers from the ListView of the ListFragment
 			getListView().setDivider(null);
 		}
+		
+		
 
 
 
 	}
+	
+
+
 }
 

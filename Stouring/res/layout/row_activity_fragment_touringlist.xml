@@ -5,7 +5,8 @@
 	android:layout_height="match_parent"
 	android:layout_gravity="center"
 	android:gravity="center_vertical"
-	android:background="@drawable/frame"
+	android:layout_marginBottom="40dp"
+	android:background="@drawable/list_unit"
     >
     
     <!-- the innner view - provides the white rectangle -->
@@ -43,27 +44,27 @@
      <!-- the container view for the title and description -->
 	<RelativeLayout android:layout_width="wrap_content"
 	android:layout_height="wrap_content"
+	android:paddingBottom="10dp"
 	android:layout_toRightOf="@id/icon"
 	android:layout_centerVertical="true" >
         
   	<RatingBar
         android:id="@+id/secondrow"
+        style="@style/StouringRatingBar"
 		android:layout_width="wrap_content"
-        android:layout_height="50dip" 
+        android:layout_height="33dp" 
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="6dip"
-        android:gravity="center_vertical"
-        android:numStars="4"
+        android:numStars="5"
         android:stepSize="1.0"
         android:rating="2.0"
         android:singleLine="true"
         android:ellipsize="marquee" />
     
-    <TextView
+    <com.junior.stouring.CustomTextView
         android:id="@+id/firstrow"
-        
+        android:fontFamily="Lato-Regular.ttf"
         android:layout_width="fill_parent"
-        android:layout_height="50dip"
+        android:layout_height="40dip"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:layout_above="@id/secondrow"

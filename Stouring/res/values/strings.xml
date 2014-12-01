@@ -5,7 +5,7 @@
     <string name="app_name">Stouring</string>
     <string name="loginactivity_name">Stouring</string>
     <string name="text_empty">Empty List</string>
-    <string name="touringlistactivity_name">TouringList</string>
+    <string name="touringlistactivity_name">Ville</string>
     <string name="newconnexionactivity_name">NewConnexion</string>
     <string name="tpdisplayer_name">Vue du Restaurant</string>
     <string name="tpmodifier_name">Mon espace établissement</string>
@@ -24,7 +24,7 @@
         <item>Hotel</item>
     </string-array>
 
-    <string name="title_activity_my_orders">MyOrdersActivity</string>
+    <string name="title_activity_my_orders">Achats</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="title_activity_user_list">UserListActivity</string>
@@ -53,5 +53,13 @@
     <!-- Content Description -->
     <string name="desc_list_item_icon">Item Icon</string>
     <string name="title_activity_list_from_db">ListFromDBActivity</string>
+
+    <!-- FONT FAMILY FOR Project -->
+    <declare-styleable name="customfont">
+        <attr name="android:fontFamily" />
+        <attr name="android:textStyle" />
+    </declare-styleable>
+
+    <string name="title_activity_home">Accueil</string>
 
 </resources>

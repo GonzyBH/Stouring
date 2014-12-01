@@ -27,9 +27,12 @@ public class WelcomeActivity extends Activity {
 					// TODO: handle exception
 					e.printStackTrace();
 				} finally {
-					Intent lunchLoginActivity = new Intent(
-							WelcomeActivity.this, LoginActivity.class);
-					startActivity(lunchLoginActivity);
+//					Intent launchLoginActivity = new Intent(
+//							WelcomeActivity.this, LoginActivity.class);
+//					startActivity(launchLoginActivity);
+					Intent launchHomeActivity = new Intent(
+							WelcomeActivity.this, HomeActivity.class);
+					startActivity(launchHomeActivity);
 					finish();
 
 				}

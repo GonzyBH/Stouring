@@ -140,7 +140,9 @@ public class LoginActivity extends Activity implements OnClickListener {
 
 			@Override
 			public void onClick(View v) {
-
+				Intent launchHomeActivity = new Intent(LoginActivity.this,
+						HomeActivity.class);
+				startActivity(launchHomeActivity);
 
 			}
 		});

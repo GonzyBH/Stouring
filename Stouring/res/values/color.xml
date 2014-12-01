@@ -9,4 +9,8 @@
     <color name="list_divider">#272727</color>
     <color name="counter_text_bg">#626262</color>
     <color name="counter_text_color">#c5c4c4</color>
+    <color name="stouring_teal">#24BDBD</color>
+    <color name="stouring_teal_light">#57DEDE</color>
+    <color name="stouring_orange">#FF8E31</color>
+    <color name="stouring_orange_light">#FFAA64</color>
     </resources>
