@@ -1,0 +1,70 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#D5D5D5"
+     >
+    
+    <RelativeLayout 
+        android:layout_width="match_parent"
+    	android:layout_height="match_parent"
+    	android:padding="15dp"
+    	android:layout_marginBottom="5dp"
+        android:background="@drawable/list_unit">
+
+
+    <com.junior.stouring.RoundedImageView
+        android:id="@+id/profilepic"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_alignTop="@+id/trace"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:src="@drawable/profile" />
+
+    <com.junior.stouring.CustomTextView
+        android:id="@+id/name"
+        android:fontFamily="Lato-Regular.ttf"
+        android:textSize="25sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/profilepic"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:text="Guillaume Pain" />
+
+    <com.junior.stouring.CustomTextView
+        android:id="@+id/addressTitle"
+        android:fontFamily="Lato-Regular.ttf"
+        android:textSize="22sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/name"
+        android:layout_marginTop="15dp"
+        android:text="Adresse" />
+    
+    <com.junior.stouring.CustomTextView
+        android:id="@+id/addressContent"
+        android:fontFamily="Lato-Regular.ttf"
+        android:textSize="16sp"
+        android:onClick="onClick"                
+       	android:clickable="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/trace"
+        android:layout_below="@id/addressTitle"
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="8dp"
+        android:text="aucune adresse" />
+    
+    <View
+    android:layout_width="fill_parent"
+    android:layout_height="1dp"
+    android:layout_below="@id/addressContent"
+    android:background="@android:color/darker_gray"/>
+    
+
+    
+    </RelativeLayout>
+
+</RelativeLayout>

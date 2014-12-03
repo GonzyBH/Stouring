@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+	android:layout_width="fill_parent" android:layout_height="fill_parent"
+
+	android:background="#ffffff">
+
+
+	<ImageView android:id="@+id/bg"
+	    android:src="@drawable/macarons"
+		android:layout_width="wrap_content" android:layout_height="wrap_content"
+		android:layout_centerInParent="true" />
+
+	<LinearLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentLeft="true"
+	    android:layout_centerVertical="true"
+	    android:orientation="vertical" >
+
+	    <LinearLayout
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_gravity="center"
+	        android:orientation="horizontal" >
+
+	        <Button
+	            android:id="@+id/buttonmaville"
+	            android:layout_width="100dp"
+	            android:layout_height="100dp"
+	            android:layout_margin="10dp"
+	            android:background="@drawable/round_button"
+	            android:textColor="#FFFFFF"
+	            android:textSize="24sp" />
+
+	        <Button
+	            android:id="@+id/buttondecouvrir"
+	            android:layout_width="100dp"
+	            android:layout_height="100dp"
+	            android:layout_margin="10dp"
+	            android:background="@drawable/round_button"
+	            android:textColor="#FFFFFF"
+	            android:textSize="20sp" />
+	    </LinearLayout>
+
+	    <LinearLayout
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_gravity="center"
+	        android:orientation="horizontal" >
+
+	        <Button
+	            android:id="@+id/buttonachats"
+	            android:layout_width="100dp"
+	            android:layout_height="100dp"
+	            android:layout_margin="10dp"
+	            android:background="@drawable/round_button"
+	            android:textColor="#FFFFFF"
+	            android:textSize="24sp" />
+
+	        <Button
+	            android:id="@+id/buttonprofil"
+	            android:layout_width="100dp"
+	            android:layout_height="100dp"
+	            android:layout_margin="10dp"
+	            android:background="@drawable/round_button"
+	            android:textColor="#FFFFFF"
+	            android:textSize="20sp" />
+	    </LinearLayout>
+	</LinearLayout>
+
+
+</RelativeLayout>
+ 

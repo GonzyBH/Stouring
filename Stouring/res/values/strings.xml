@@ -61,5 +61,6 @@
     </declare-styleable>
 
     <string name="title_activity_home">Accueil</string>
+    <string name="title_activity_profile">Profil</string>
 
 </resources>
