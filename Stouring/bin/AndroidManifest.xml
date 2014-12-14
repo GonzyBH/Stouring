@@ -102,6 +102,14 @@
             android:name=".ProfileActivity"
             android:label="@string/title_activity_profile" >
         </activity>
+        <activity
+            android:name=".MaVilleActivity"
+            android:label="@string/title_activity_ma_ville" >
+        </activity>
+        <activity
+            android:name=".MaVilleUndefActivity"
+            android:label="@string/title_activity_ma_ville_undef" >
+        </activity>
     </application>
 
 </manifest>

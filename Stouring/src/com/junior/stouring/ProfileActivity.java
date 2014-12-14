@@ -31,7 +31,8 @@ public class ProfileActivity extends DrawerActivity {
 		final TextView name = (TextView) findViewById(R.id.name);
 		name.setText(settings.getString("name", "John Doe"));
 
-
+		final TextView myCity = (TextView) findViewById(R.id.myCity);
+		myCity.setText(settings.getString("myCity", "Ici c'est Paris maggle"));
 
 
 		addressContent.setOnClickListener(new View.OnClickListener(){
@@ -57,6 +58,16 @@ public class ProfileActivity extends DrawerActivity {
 
 		});
 		
+		
+		myCity.setOnClickListener(new View.OnClickListener(){
+
+			@Override
+			public void onClick(View arg0) {
+				showAlert("Choisir ma ville", myCity, "myCity",settings);
+			}
+
+
+		});
 		
 
 	}

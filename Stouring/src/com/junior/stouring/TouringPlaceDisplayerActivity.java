@@ -51,10 +51,10 @@ public class TouringPlaceDisplayerActivity extends DrawerActivity{
         
         TextView displayPlaceInfo = (TextView) findViewById(R.id.displaytp);
         displayPlaceInfo.setText(
-        "User : " + "\n"
-        + " FirstName : " + mTouringPlace.getName() + "\n"
-        + " Mark : " + mTouringPlace.getMark()  + "\n" 
+        "Nom : " + mTouringPlace.getName() + "\n"
+        + " Note : " + mTouringPlace.getMark()  + "\n" 
         + " Type : " + mTouringPlace.getType()  + "\n"
+        + " Ville : " + mTouringPlace.getCity()  + "\n"
         + " Latitude : " + mTouringPlace.getLatitude()  + "\n" 
         + " Longitude : " + mTouringPlace.getLongitude());
         

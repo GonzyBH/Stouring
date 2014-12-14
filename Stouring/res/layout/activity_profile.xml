@@ -2,8 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#D5D5D5"
-     >
+    android:background="#D5D5D5" >
     
     <RelativeLayout 
         android:layout_width="match_parent"
@@ -12,7 +11,7 @@
     	android:layout_marginBottom="5dp"
         android:background="@drawable/list_unit">
 
-
+        
     <com.junior.stouring.RoundedImageView
         android:id="@+id/profilepic"
         android:layout_width="120dp"
@@ -51,19 +50,40 @@
        	android:clickable="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@id/trace"
         android:layout_below="@id/addressTitle"
         android:layout_marginTop="3dp"
-        android:layout_marginBottom="8dp"
-        android:text="aucune adresse" />
+        android:layout_marginBottom="8dp" />
     
     <View
+    android:id="@+id/sep1"
     android:layout_width="fill_parent"
     android:layout_height="1dp"
     android:layout_below="@id/addressContent"
     android:background="@android:color/darker_gray"/>
     
-
+    
+    <com.junior.stouring.CustomTextView
+        android:id="@+id/cityTitle"
+        android:fontFamily="Lato-Regular.ttf"
+        android:textSize="22sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/sep1"
+        android:layout_marginTop="25dp"
+        android:text="Ma ville préférée" />
+    
+    
+    <com.junior.stouring.CustomTextView
+        android:id="@+id/myCity"
+        android:fontFamily="Lato-Regular.ttf"
+        android:textSize="16sp"
+        android:onClick="onClick"                
+       	android:clickable="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/cityTitle"
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="8dp" />
     
     </RelativeLayout>
 

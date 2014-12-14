@@ -4,7 +4,7 @@
     <string name="app_id">1433080166951942</string>
     <string name="app_name">Stouring</string>
     <string name="loginactivity_name">Stouring</string>
-    <string name="text_empty">Empty List</string>
+    <string name="text_empty">Aucune donnée chargée. Veuillez vérifier votre connexion internet et réessayer.</string>
     <string name="touringlistactivity_name">Ville</string>
     <string name="newconnexionactivity_name">NewConnexion</string>
     <string name="tpdisplayer_name">Vue du Restaurant</string>
@@ -62,5 +62,7 @@
 
     <string name="title_activity_home">Accueil</string>
     <string name="title_activity_profile">Profil</string>
+    <string name="title_activity_ma_ville">Ma Ville</string>
+    <string name="title_activity_ma_ville_undef">MaVilleUndefActivity</string>
 
 </resources>

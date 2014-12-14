@@ -33,6 +33,7 @@ public class TouringPlaceDatabaseHelper extends SQLiteOpenHelper {
 	private static final String COLUMN_RATING = "rating";
 	private static final String COLUMN_TYPE = "type";
 	private static final String COLUMN_IMAGE = "image";
+	private static final String COLUMN_CITY = "city";
 	private static final String COLUMN_LATITUDE = "latitude";
 	private static final String COLUMN_LONGITUDE = "longitude";
 
@@ -51,6 +52,7 @@ public class TouringPlaceDatabaseHelper extends SQLiteOpenHelper {
 			+ COLUMN_RATING + " FLOAT NOT NULL,"
 			+ COLUMN_TYPE + " STRING NOT NULL,"
 			+ COLUMN_IMAGE + " BLOB," 
+			+ COLUMN_CITY + " STRING NOT NULL,"
 			+ COLUMN_LATITUDE + " DOUBLE NOT NULL," 
 			+ COLUMN_LONGITUDE + " DOUBLE NOT NULL" + ")";
 
@@ -113,7 +115,7 @@ public class TouringPlaceDatabaseHelper extends SQLiteOpenHelper {
 		
 		// send query
 		Cursor cursor = db.query(TABLE_TOURING_PLACE, new String[] {
-				COLUMN_ID, COLUMN_NAME, COLUMN_RATING, COLUMN_TYPE, COLUMN_IMAGE, COLUMN_LATITUDE,
+				COLUMN_ID, COLUMN_NAME, COLUMN_RATING, COLUMN_TYPE, COLUMN_IMAGE, COLUMN_CITY, COLUMN_LATITUDE,
 				COLUMN_LONGITUDE }, null, null, null, null, null, null); // get
 																			// all
 																			// rows
@@ -124,9 +126,9 @@ public class TouringPlaceDatabaseHelper extends SQLiteOpenHelper {
 				byte[] bitmapdata = cursor.getBlob(3);
 				Bitmap bitmap = BitmapFactory.decodeByteArray(bitmapdata , 0, bitmapdata .length);
 				items.add(new TouringPlace(cursor.getInt(0), cursor.getString(1), Float
-						.parseFloat(cursor.getString(2)), cursor.getString(3), bitmap,
-						Double.parseDouble(cursor.getString(5)), Double
-								.parseDouble(cursor.getString(6))));
+						.parseFloat(cursor.getString(2)), cursor.getString(3), bitmap, cursor.getString(5),
+						Double.parseDouble(cursor.getString(6)), Double
+								.parseDouble(cursor.getString(7))));
 			}
 			// close the cursor
 			cursor.close();
@@ -181,6 +183,7 @@ public class TouringPlaceDatabaseHelper extends SQLiteOpenHelper {
 		values.put(COLUMN_RATING, item.getMark());
 		values.put(COLUMN_TYPE, item.getType());
 		values.put(COLUMN_IMAGE, byteImage);
+		values.put(COLUMN_CITY, item.getCity());
 		values.put(COLUMN_LATITUDE, item.getLatitude());
 		values.put(COLUMN_LONGITUDE, item.getLongitude());
 		// add the row
@@ -199,6 +202,7 @@ public class TouringPlaceDatabaseHelper extends SQLiteOpenHelper {
 		values.put(COLUMN_NAME, item.getName());
 		values.put(COLUMN_RATING, item.getMark());
 		values.put(COLUMN_TYPE, item.getType());
+		values.put(COLUMN_CITY, item.getCity());
 		values.put(COLUMN_LATITUDE, item.getLatitude());
 		values.put(COLUMN_LONGITUDE, item.getLongitude());
 		// add the row
@@ -222,6 +226,7 @@ public class TouringPlaceDatabaseHelper extends SQLiteOpenHelper {
 			values.put(COLUMN_RATING, item.getMark());
 			values.put(COLUMN_TYPE, item.getType());
 			values.put(COLUMN_IMAGE, byteImage);
+			values.put(COLUMN_CITY, item.getCity());
 			values.put(COLUMN_LATITUDE, item.getLatitude());
 			values.put(COLUMN_LONGITUDE, item.getLongitude());
 		 
@@ -247,7 +252,7 @@ public class TouringPlaceDatabaseHelper extends SQLiteOpenHelper {
 		if (c != null)
 	        c.moveToFirst();
 	 
-	    TouringPlace tp = new TouringPlace(0, "", 0, "", 0, 0);
+	    TouringPlace tp = new TouringPlace(0, "", 0, "", "", 0, 0);
 	    
 //	    byte[] bitmapdata = c.getBlob(c.getColumnIndex(COLUMN_IMAGE));
 //		Bitmap bitmap = BitmapFactory.decodeByteArray(bitmapdata , 0, bitmapdata .length);
@@ -258,6 +263,7 @@ public class TouringPlaceDatabaseHelper extends SQLiteOpenHelper {
 	    tp.setMark(c.getFloat(c.getColumnIndex(COLUMN_RATING)));
 	    tp.setType(c.getString(c.getColumnIndex(COLUMN_TYPE)));
 //	    tp.setImage(bitmap);
+	    tp.setCity(c.getString(c.getColumnIndex(COLUMN_CITY)));
 	    tp.setLatitude(c.getDouble(c.getColumnIndex(COLUMN_LATITUDE)));
 	    tp.setLongitude(c.getDouble(c.getColumnIndex(COLUMN_LONGITUDE)));
 	    

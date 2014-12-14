@@ -12,6 +12,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.DatabaseUtils;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
@@ -27,6 +29,7 @@ public class FragmentTouringList extends ListFragment {
 	private static String url = "http://api.stouring.mobi/?db_api=place&request=ALL_PLACES";
 
 	private static final String TAG_CONTACTS = "places";
+	private static final String TAG_CITY = "city";
 	private static final String TAG_NID = "nid";
 	private static final String TAG_NAME = "name";
 	//private static final String TAG_ADDRESS = "address";
@@ -69,7 +72,7 @@ public class FragmentTouringList extends ListFragment {
 	public void onViewCreated(View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
 
-		new GetPlaces().execute();
+		new GetPlaces(getActivity().getApplicationContext()).execute();
 
 
 	}
@@ -92,20 +95,45 @@ public class FragmentTouringList extends ListFragment {
 
 
 	private class GetPlaces extends AsyncTask<Void, Void, Void> {
+		
+		Context mContext;
+		public GetPlaces (Context context){
+	         mContext = context;
+	    }
 
 
 		@Override
 		protected void onPreExecute() {
 			super.onPreExecute();
-			// Create a progressdialog
-			mProgressDialog = new ProgressDialog(getActivity());
-			// Set progressdialog title
-			mProgressDialog.setTitle("Mise à jour de la liste des établissements");
-			// Set progressdialog message
-			mProgressDialog.setMessage("Chargement...");
-			mProgressDialog.setIndeterminate(false);
-			// Show progressdialog
-			mProgressDialog.show();
+			
+			ConnectivityManager cm =
+			        (ConnectivityManager)mContext.getSystemService(Context.CONNECTIVITY_SERVICE);
+			 
+			NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+			boolean isConnected = activeNetwork != null &&
+			                      activeNetwork.isConnectedOrConnecting();
+			
+			if(!isConnected){
+				
+				int duration = Toast.LENGTH_SHORT;
+
+				Toast toast = Toast.makeText(mContext, "Aucune connexion : impossible de rafraîchir la liste.", duration);
+				toast.show();
+				cancel(true);
+			}
+			else{
+			
+				// Create a progressdialog
+				mProgressDialog = new ProgressDialog(getActivity());
+				// Set progressdialog title
+				mProgressDialog.setTitle("Mise à jour de la liste des établissements");
+				// Set progressdialog message
+				mProgressDialog.setMessage("Chargement...");
+				mProgressDialog.setIndeterminate(false);
+				// Show progressdialog
+				mProgressDialog.setCancelable(false);
+				mProgressDialog.show();
+			}
 		}
 
 		@Override
@@ -153,10 +181,11 @@ public class FragmentTouringList extends ListFragment {
 							c.getString(TAG_PHONE);
 							
 							int rating = c.getInt(TAG_RATING)/20;
+							String city = c.getString(TAG_CITY);
 
 
 							TouringPlace newTP = new TouringPlace(id, DatabaseUtils.sqlEscapeString(name),
-									rating,"place", 12, 12);
+									rating, city, "place", 12, 12);
 
 							//ajout pour affichage
 							items.add(newTP);

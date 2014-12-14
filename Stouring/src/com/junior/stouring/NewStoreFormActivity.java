@@ -69,7 +69,7 @@ public class NewStoreFormActivity extends DrawerActivity {
 						Random r = new Random();
 						int i1 = r.nextInt(80000 - 5000) + 5000;
 						
-						TouringPlace newTP = new TouringPlace(i1, tpName, (float) 0, sType, staticImage, tpLatLng.latitude, tpLatLng.longitude);
+						TouringPlace newTP = new TouringPlace(i1, tpName, (float) 0, sType, staticImage, tpCity, tpLatLng.latitude, tpLatLng.longitude);
 						Toast.makeText(getBaseContext(), fAddress, Toast.LENGTH_SHORT).show();
 						mDatabaseHelper.addItem(newTP);
 					}else{

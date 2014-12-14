@@ -12,6 +12,7 @@ public class TouringPlace implements Parcelable, Comparable<TouringPlace>{
 	private float Mark;
 	private String Type;
 	private Bitmap Image;
+	private String City;
 	private double Latitude;
 	private double Longitude;
 
@@ -21,6 +22,7 @@ public class TouringPlace implements Parcelable, Comparable<TouringPlace>{
 			float pMark,
 			String pType,
 			Bitmap pBitmap,
+			String pCity,
 			double pLatitude,
 			double pLongitude) 
 	{
@@ -30,6 +32,7 @@ public class TouringPlace implements Parcelable, Comparable<TouringPlace>{
 		this.Mark = pMark;
 		this.Type = pType;
 		this.Image = pBitmap;
+		this.City = pCity;
 		this.Latitude = pLatitude;
 		this.Longitude = pLongitude;
 	}
@@ -39,6 +42,7 @@ public class TouringPlace implements Parcelable, Comparable<TouringPlace>{
 			String pName,
 			float pMark,
 			String pType,
+			String pCity,
 			double pLatitude,
 			double pLongitude) 
 	{
@@ -47,6 +51,7 @@ public class TouringPlace implements Parcelable, Comparable<TouringPlace>{
 		this.Name = pName;
 		this.Mark = pMark;
 		this.Type = pType;
+		this.City = pCity;
 		this.Latitude = pLatitude;
 		this.Longitude = pLongitude;
 	}
@@ -57,6 +62,7 @@ public class TouringPlace implements Parcelable, Comparable<TouringPlace>{
 		this.Mark = in.readFloat();
 		this.Type = in.readString();
 		this.Image = in.readParcelable(getClass().getClassLoader());
+		this.City = in.readString();
 		this.Latitude = in.readDouble();
 		this.Longitude = in.readDouble();
 	}
@@ -79,6 +85,10 @@ public class TouringPlace implements Parcelable, Comparable<TouringPlace>{
 	
 	public Bitmap getImage(){
 		return Image;
+	}
+	
+	public String getCity(){
+		return City;
 	}
 	
 	public double getLatitude(){
@@ -108,6 +118,10 @@ public class TouringPlace implements Parcelable, Comparable<TouringPlace>{
 	public void setImage(Bitmap pImage){
 		Image = pImage;
 	}
+	
+	public void setCity(String pCity){
+		City = pCity;
+	}
 
 	public void setLatitude(double pLatitude){
 		Latitude = pLatitude;
@@ -131,6 +145,7 @@ public class TouringPlace implements Parcelable, Comparable<TouringPlace>{
 		dest.writeFloat(Mark);
 		dest.writeString(Type);
 		dest.writeParcelable(Image, flags);
+		dest.writeString(City);
 		dest.writeDouble(Latitude);
 		dest.writeDouble(Longitude);
 	}
