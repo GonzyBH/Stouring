@@ -61,7 +61,7 @@ public class HomeActivity extends DrawerActivity {
 			public void onClick(View v) {
 			
 				Intent launchDecouvrir = new Intent(HomeActivity.this,
-						TouringListActivity.class);
+						CityListActivity.class);
 				startActivity(launchDecouvrir);
 			}
 		});

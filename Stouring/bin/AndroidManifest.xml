@@ -54,6 +54,10 @@
             android:label="@string/touringlistactivity_name" >
         </activity>
         <activity
+            android:name=".CityListActivity"
+            android:label="@string/touringlistactivity_name" >
+        </activity>
+        <activity
             android:name=".NewConnexionActivity"
             android:label="@string/newconnexionactivity_name" >
         </activity>

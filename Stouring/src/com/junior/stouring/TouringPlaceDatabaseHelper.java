@@ -24,6 +24,7 @@ public class TouringPlaceDatabaseHelper extends SQLiteOpenHelper {
 	// Table name
 	private static final String TABLE_TOURING_PLACE = "TP_list";
 	private static final String TABLE_USER = "User_list";
+	private static final String TABLE_CITIES = "cities_list";
 
 	// Common Column names
 	private static final String COLUMN_ID = "id";
@@ -63,6 +64,13 @@ public class TouringPlaceDatabaseHelper extends SQLiteOpenHelper {
 			+ " STRING NOT NULL," + COLUMN_LAST_NAME + " STRING NOT NULL,"
 			+ COLUMN_EMAIL + " STRING NOT NULL," + COLUMN_PASSWORD
 			+ " STRING NOT NULL" + ")";
+	
+	// TABLE_CITIES table create statement
+		private static final String CREATE_TABLE_CITIES = "CREATE TABLE "
+				+ TABLE_CITIES + "(" 
+				+ COLUMN_ID + " INTEGER UNIQUE," 
+				+ COLUMN_NAME + " STRING NOT NULL"
+				+ ")";
 
 	public TouringPlaceDatabaseHelper(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -72,6 +80,7 @@ public class TouringPlaceDatabaseHelper extends SQLiteOpenHelper {
 	public void onCreate(SQLiteDatabase db) {
 		db.execSQL(CREATE_TABLE_TOURING_PLACE);
 		db.execSQL(CREATE_TABLE_USER);
+		db.execSQL(CREATE_TABLE_CITIES);
 	}
 
 	@Override
@@ -80,6 +89,7 @@ public class TouringPlaceDatabaseHelper extends SQLiteOpenHelper {
 		// 1) drop the old table
 		db.execSQL("DROP TABLE IF EXISTS " + TABLE_TOURING_PLACE);
 		db.execSQL("DROP TABLE IF EXISTS " + TABLE_USER);
+		db.execSQL("DROP TABLE IF EXISTS " + TABLE_CITIES);
 		// 2) create a new database
 		onCreate(db);
 	}
@@ -137,6 +147,78 @@ public class TouringPlaceDatabaseHelper extends SQLiteOpenHelper {
 		db.close();
 		// return the list
 		return items;
+	}
+	
+	
+	/**
+	 * retrieve all items from a given city from the database
+	 */
+	public ArrayList<TouringPlace> getCityItems(String city) {
+		// initialize the list
+		ArrayList<TouringPlace> items = new ArrayList<TouringPlace>();
+		// obtain a readable database
+		SQLiteDatabase db = getReadableDatabase();
+		
+//		ServiceHandler sh = new ServiceHandler();
+//		String jsonStr = sh.makeServiceCall(url, ServiceHandler.GET);
+		
+		// send query
+		Cursor cursor = db.query(TABLE_TOURING_PLACE, new String[] {
+				COLUMN_ID, COLUMN_NAME, COLUMN_RATING, COLUMN_TYPE, COLUMN_IMAGE, COLUMN_CITY, COLUMN_LATITUDE,
+				COLUMN_LONGITUDE }, COLUMN_CITY + " = ?", new String[]{city}, null, null , null, null); // get
+																			// all
+																			// rows
+		if (cursor != null) {
+			// add items to the list
+			for (cursor.moveToFirst(); cursor.isAfterLast() == false; cursor
+					.moveToNext()) {
+				byte[] bitmapdata = cursor.getBlob(3);
+				Bitmap bitmap = BitmapFactory.decodeByteArray(bitmapdata , 0, bitmapdata .length);
+				items.add(new TouringPlace(cursor.getInt(0), cursor.getString(1), Float
+						.parseFloat(cursor.getString(2)), cursor.getString(3), bitmap, cursor.getString(5),
+						Double.parseDouble(cursor.getString(6)), Double
+								.parseDouble(cursor.getString(7))));
+			}
+			// close the cursor
+			cursor.close();
+		}
+		// close the database connection
+		db.close();
+		// return the list
+		return items;
+	}
+	
+	
+	/**
+	 * retrieve all items from the database
+	 */
+	public ArrayList<City> getAllCities() {
+		// initialize the list
+		ArrayList<City> cities = new ArrayList<City>();
+		// obtain a readable database
+		SQLiteDatabase db = getReadableDatabase();
+		
+//		ServiceHandler sh = new ServiceHandler();
+//		String jsonStr = sh.makeServiceCall(url, ServiceHandler.GET);
+		
+		// send query
+		Cursor cursor = db.query(TABLE_CITIES, new String[] {
+				COLUMN_ID, COLUMN_NAME}, null, null, null, null, null, null); // get
+																			// all
+																			// rows
+		if (cursor != null) {
+			// add items to the list
+			for (cursor.moveToFirst(); cursor.isAfterLast() == false; cursor
+					.moveToNext()) {
+				cities.add(new City(cursor.getInt(0), cursor.getString(1)));
+			}
+			// close the cursor
+			cursor.close();
+		}
+		// close the database connection
+		db.close();
+		// return the list
+		return cities;
 	}
 
 //	// PAR MATHIEU
@@ -208,6 +290,21 @@ public class TouringPlaceDatabaseHelper extends SQLiteOpenHelper {
 		// add the row
 		SQLiteDatabase db = getWritableDatabase();
 		db.insert(TABLE_TOURING_PLACE, null, values);
+	}
+	
+	
+	/**
+	 * Add a new city
+	 */
+	public void addCity(City city) {
+		
+		// prepare values
+		ContentValues values = new ContentValues();
+		values.put(COLUMN_ID,city.getId());
+		values.put(COLUMN_NAME, city.getName());
+		// add the row
+		SQLiteDatabase db = getWritableDatabase();
+		db.insert(TABLE_CITIES, null, values);
 	}
 	
 	/**
@@ -294,6 +391,29 @@ public class TouringPlaceDatabaseHelper extends SQLiteOpenHelper {
 	}
 	
 	/**
+	 * Check if a City exists from id
+	 */
+	public Boolean checkIfCityExists(int pId) {
+			
+		SQLiteDatabase db = this.getReadableDatabase();
+		String selectQuery = "SELECT  * FROM " + TABLE_CITIES + " WHERE "
+	            + COLUMN_ID + " = " + pId;
+		
+		Log.i("Query", selectQuery);
+		
+		Cursor c = db.rawQuery(selectQuery, null);
+		c.moveToLast();
+		int count = c.getCount();
+		
+		if (count != 0) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
+	/**
 	 * Add a new user
 	 */
 	public void addUser(User pUser) {
@@ -307,6 +427,8 @@ public class TouringPlaceDatabaseHelper extends SQLiteOpenHelper {
 		SQLiteDatabase db = getWritableDatabase();
 		db.insert(TABLE_USER, null, values);
 	}
+	
+
 
 	/**
 	 * Add items to the list
