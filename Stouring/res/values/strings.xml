@@ -64,5 +64,6 @@
     <string name="title_activity_profile">Profil</string>
     <string name="title_activity_ma_ville">Ma Ville</string>
     <string name="title_activity_ma_ville_undef">MaVilleUndefActivity</string>
+    <string name="title_activity_list_places">Détail</string>
 
 </resources>

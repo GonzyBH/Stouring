@@ -31,6 +31,7 @@ public class FragmentCityList extends ListFragment {
 	private static final String TAG_PLACES = "places";
 	private static final String TAG_CITY = "city";
 	private static final String TAG_CITIES = "cities";
+	private static final String TAG_TYPES = "types";
 	private static final String TAG_TID = "tid";
 	private static final String TAG_NID = "nid";
 	private static final String TAG_NAME = "name";
@@ -41,6 +42,7 @@ public class FragmentCityList extends ListFragment {
 
 	JSONArray places = null;
 	JSONArray cities = null;
+	JSONArray types = null;
 
 	ProgressDialog mProgressDialog;
 
@@ -91,7 +93,7 @@ public class FragmentCityList extends ListFragment {
 			// Toast.makeText(getActivity(), item.getName(),
 			// Toast.LENGTH_SHORT).show();
 			Intent intent = new Intent(getActivity(),
-					TouringListActivity.class);
+					ListPlacesActivity.class);
 			intent.putExtra("cityName", cName);
 			getActivity().startActivityForResult(intent, 1);
 		}
@@ -218,6 +220,23 @@ public class FragmentCityList extends ListFragment {
 							
 							if(!dbHelper.checkIfCityExists(newCity.getId())){
 								dbHelper.addCity(newCity);
+							}
+						}
+						
+						
+						types = jsonObj.getJSONArray(TAG_TYPES);
+						
+						for (int k = 0; k < types.length(); k++) {	
+							JSONObject t = types.getJSONObject(k);
+							
+							int tId = t.getInt(TAG_TID);
+							String tName = t.getString(TAG_NAME);
+							Log.e("type name", tName);
+							PlaceType newType = new PlaceType(tId, tName);
+
+							
+							if(!dbHelper.checkIfPlaceTypeExists(newType.getId())){
+								dbHelper.addPlaceType(newType);
 							}
 						}
 						

@@ -25,6 +25,7 @@ public class TouringPlaceDatabaseHelper extends SQLiteOpenHelper {
 	private static final String TABLE_TOURING_PLACE = "TP_list";
 	private static final String TABLE_USER = "User_list";
 	private static final String TABLE_CITIES = "cities_list";
+	private static final String TABLE_TYPES = "types_list";
 
 	// Common Column names
 	private static final String COLUMN_ID = "id";
@@ -71,6 +72,13 @@ public class TouringPlaceDatabaseHelper extends SQLiteOpenHelper {
 				+ COLUMN_ID + " INTEGER UNIQUE," 
 				+ COLUMN_NAME + " STRING NOT NULL"
 				+ ")";
+		
+	// TABLE_TYPES table create statement
+		private static final String CREATE_TABLE_TYPES = "CREATE TABLE "
+				+ TABLE_TYPES + "(" 
+				+ COLUMN_ID + " INTEGER UNIQUE," 
+				+ COLUMN_NAME + " STRING NOT NULL"
+				+ ")";
 
 	public TouringPlaceDatabaseHelper(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -81,6 +89,7 @@ public class TouringPlaceDatabaseHelper extends SQLiteOpenHelper {
 		db.execSQL(CREATE_TABLE_TOURING_PLACE);
 		db.execSQL(CREATE_TABLE_USER);
 		db.execSQL(CREATE_TABLE_CITIES);
+		db.execSQL(CREATE_TABLE_TYPES);
 	}
 
 	@Override
@@ -220,8 +229,42 @@ public class TouringPlaceDatabaseHelper extends SQLiteOpenHelper {
 		// return the list
 		return cities;
 	}
+	
+	
+	/**
+	 * retrieve all items from the database
+	 */
+	public ArrayList<PlaceType> getAllPlaceTypes() {
+		// initialize the list
+		ArrayList<PlaceType> types = new ArrayList<PlaceType>();
+		// obtain a readable database
+		SQLiteDatabase db = getReadableDatabase();
+		
+//		ServiceHandler sh = new ServiceHandler();
+//		String jsonStr = sh.makeServiceCall(url, ServiceHandler.GET);
+		
+		// send query
+		Cursor cursor = db.query(TABLE_TYPES, new String[] {
+				COLUMN_ID, COLUMN_NAME}, null, null, null, null, null, null); // get
+																			// all
+																			// rows
+		if (cursor != null) {
+			// add items to the list
+			for (cursor.moveToFirst(); cursor.isAfterLast() == false; cursor
+					.moveToNext()) {
+				types.add(new PlaceType(cursor.getInt(0), cursor.getString(1)));
+				Log.d("dbhelper",cursor.getString(1));
+			}
+			// close the cursor
+			cursor.close();
+		}
+		// close the database connection
+		db.close();
+		// return the list
+		return types;
+	}
 
-//	// PAR MATHIEU
+	
 //	public List<TouringPlace> getPlaceType(String sType) {
 //		// initialize the list
 //		List<TouringPlace> items = new ArrayList<TouringPlace>();
@@ -308,6 +351,21 @@ public class TouringPlaceDatabaseHelper extends SQLiteOpenHelper {
 	}
 	
 	/**
+	 * Add a new type
+	 */
+	public void addPlaceType(PlaceType type) {
+		
+		// prepare values
+		ContentValues values = new ContentValues();
+		values.put(COLUMN_ID,type.getId());
+		values.put(COLUMN_NAME, type.getName());
+		// add the row
+		SQLiteDatabase db = getWritableDatabase();
+		db.insert(TABLE_TYPES, null, values);
+	}
+	
+	
+	/**
 	 * Update TP	 
 	 */
 	public int updateTP(TouringPlace item) {
@@ -391,12 +449,64 @@ public class TouringPlaceDatabaseHelper extends SQLiteOpenHelper {
 	}
 	
 	/**
+	 * Get City from name
+	 */
+	public City getCityFromDB(String pName) {
+		
+		SQLiteDatabase db = this.getReadableDatabase();
+		String selectQuery = "SELECT  * FROM " + TABLE_CITIES + " WHERE "
+	            + COLUMN_NAME + " = '"+ pName + "'";
+		
+		Log.i("Query", selectQuery);
+		
+		Cursor c = db.rawQuery(selectQuery, null);
+		
+		if (c != null)
+	        c.moveToFirst();
+	 
+	    City city = new City(0, "");
+	    
+//	    byte[] bitmapdata = c.getBlob(c.getColumnIndex(COLUMN_IMAGE));
+//		Bitmap bitmap = BitmapFactory.decodeByteArray(bitmapdata , 0, bitmapdata .length);
+	    
+	    
+	    city.setId(c.getInt(c.getColumnIndex(COLUMN_ID)));
+	    city.setName(pName);
+	    
+	    return city;
+	}
+	
+	/**
 	 * Check if a City exists from id
 	 */
 	public Boolean checkIfCityExists(int pId) {
 			
 		SQLiteDatabase db = this.getReadableDatabase();
 		String selectQuery = "SELECT  * FROM " + TABLE_CITIES + " WHERE "
+	            + COLUMN_ID + " = " + pId;
+		
+		Log.i("Query", selectQuery);
+		
+		Cursor c = db.rawQuery(selectQuery, null);
+		c.moveToLast();
+		int count = c.getCount();
+		
+		if (count != 0) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
+	
+	/**
+	 * Check if a City exists from id
+	 */
+	public Boolean checkIfPlaceTypeExists(int pId) {
+			
+		SQLiteDatabase db = this.getReadableDatabase();
+		String selectQuery = "SELECT  * FROM " + TABLE_TYPES + " WHERE "
 	            + COLUMN_ID + " = " + pId;
 		
 		Log.i("Query", selectQuery);

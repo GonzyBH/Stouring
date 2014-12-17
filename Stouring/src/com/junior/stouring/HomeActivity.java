@@ -2,7 +2,6 @@ package com.junior.stouring;
 
 import com.junior.stouring.drawer.DrawerActivity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
@@ -69,6 +68,15 @@ public class HomeActivity extends DrawerActivity {
 		Button buttonAchats = (Button) findViewById(R.id.buttonachats);
 		buttonAchats.setText("Achats");
 		buttonAchats.setTypeface(latoLight);
+		buttonAchats.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+			
+				Intent launchTest = new Intent(HomeActivity.this,
+						ListPlacesActivity.class);
+				startActivity(launchTest);
+			}
+		});
 		
 		Button buttonProfil = (Button) findViewById(R.id.buttonprofil);
 		buttonProfil.setText("Mon Profil");
