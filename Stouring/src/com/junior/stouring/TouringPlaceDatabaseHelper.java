@@ -426,6 +426,46 @@ public class TouringPlaceDatabaseHelper extends SQLiteOpenHelper {
 	}
 	
 	/**
+	 * retrieve all items from the database
+	 */
+	public ArrayList<TouringPlace> getAllByCityAndType(String pCity, String pType) {
+		
+		Log.e("dbhelper",pType);
+		Log.e("dbhelper", pCity);
+		// initialize the list
+		ArrayList<TouringPlace> items = new ArrayList<TouringPlace>();
+		// obtain a readable database
+		SQLiteDatabase db = getReadableDatabase();
+		
+//		ServiceHandler sh = new ServiceHandler();
+//		String jsonStr = sh.makeServiceCall(url, ServiceHandler.GET);
+		
+		// send query
+		Cursor cursor = db.query(TABLE_TOURING_PLACE, new String[] {
+				COLUMN_ID, COLUMN_NAME, COLUMN_RATING, COLUMN_TYPE, COLUMN_IMAGE, COLUMN_CITY, COLUMN_LATITUDE,
+				COLUMN_LONGITUDE }, COLUMN_CITY + " = ? AND " + COLUMN_TYPE + " = ?", new String[]{pCity, pType}, null, null, null, null); 
+																			
+		if (cursor != null) {
+			// add items to the list
+			for (cursor.moveToFirst(); cursor.isAfterLast() == false; cursor
+					.moveToNext()) {
+				byte[] bitmapdata = cursor.getBlob(3);
+				Bitmap bitmap = BitmapFactory.decodeByteArray(bitmapdata , 0, bitmapdata .length);
+				items.add(new TouringPlace(cursor.getInt(0), cursor.getString(1), Float
+						.parseFloat(cursor.getString(2)), cursor.getString(3), bitmap, cursor.getString(5),
+						Double.parseDouble(cursor.getString(6)), Double
+								.parseDouble(cursor.getString(7))));
+			}
+			// close the cursor
+			cursor.close();
+		}
+		// close the database connection
+		db.close();
+		// return the list
+		return items;
+	}
+	
+	/**
 	 * Check if a Tourist Place exists from name
 	 */
 	public Boolean checkIfTouringPlaceExists(String pName) {

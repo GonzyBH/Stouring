@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.annotation.TargetApi;
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
@@ -42,7 +43,6 @@ public class ListPlacesActivity extends DrawerActivity implements ActionBar.TabL
         ArrayList<PlaceType> pT = mDatabaseHelper.getAllPlaceTypes();
         setTitle(cName);
 //        TouringPlace mTouringPlace = mDatabaseHelper.getTouringPlaceFromDB(mTouringPlaceId);
-        
         tabInitialization(mCity, pT);
         
 	}
@@ -53,7 +53,7 @@ public class ListPlacesActivity extends DrawerActivity implements ActionBar.TabL
 		// Initilization
         viewPager = (ViewPager) findViewById(R.id.pager);
         actionBar = getActionBar();
-        mAdapter = new ListPlacesTabsPagerAdapter(getSupportFragmentManager(), mC);
+        mAdapter = new ListPlacesTabsPagerAdapter(getSupportFragmentManager(), mC, pT);
  
         viewPager.setAdapter(mAdapter);
         //actionBar.setHomeButtonEnabled(false);

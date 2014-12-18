@@ -45,11 +45,16 @@ public class FragmentTouringList extends ListFragment {
 		super.onActivityCreated(savedInstanceState);
 		
 		final String cityName = getActivity().getIntent().getExtras().getString("cityName");
-		
+		final PlaceType placeType = getArguments().getParcelable("placeType");
 
-		
 		dbHelper = new TouringPlaceDatabaseHelper(getActivity());
-		items = dbHelper.getCityItems(cityName);
+		if(placeType.getName() =="ALL"){
+			items = dbHelper.getCityItems(cityName);
+		}
+		else{
+			items = dbHelper.getAllByCityAndType(cityName,placeType.getName());
+		}
+
 		// initialize and set the list adapter
 					mAdapter = new CustomStouringListFragmentAdapter(getActivity(),
 							items);

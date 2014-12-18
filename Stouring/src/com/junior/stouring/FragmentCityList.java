@@ -31,7 +31,10 @@ public class FragmentCityList extends ListFragment {
 	private static final String TAG_PLACES = "places";
 	private static final String TAG_CITY = "city";
 	private static final String TAG_CITIES = "cities";
+	private static final String TAG_LATITUDE = "latitude";
+	private static final String TAG_LONGITUDE = "longitude";
 	private static final String TAG_TYPES = "types";
+	private static final String TAG_TYPE = "type";
 	private static final String TAG_TID = "tid";
 	private static final String TAG_NID = "nid";
 	private static final String TAG_NAME = "name";
@@ -185,12 +188,25 @@ public class FragmentCityList extends ListFragment {
 							//String address = c.getString(TAG_ADDRESS);
 							p.getString(TAG_PHONE);
 							
+							String sLatitude = p.getString(TAG_LATITUDE);
+							String sLongitude = p.getString(TAG_LONGITUDE);
+							
+							double dLatitude = 0;
+							double dLongitude = 0;
+							
+							if(!sLatitude.isEmpty() && !sLongitude.isEmpty()){
+								dLatitude = Double.parseDouble(sLatitude);
+								dLongitude = Double.parseDouble(sLongitude);
+							}
+							
+							String type = p.getString(TAG_TYPE);
+							
 							int rating = p.getInt(TAG_RATING)/20;
 							String city = p.getString(TAG_CITY);
 
 
 							TouringPlace newTP = new TouringPlace(id, DatabaseUtils.sqlEscapeString(name),
-									rating,"place", city, 12, 12);
+									rating,type, city, dLatitude, dLongitude);
 
 							
 
@@ -212,7 +228,6 @@ public class FragmentCityList extends ListFragment {
 							
 							int id = c.getInt(TAG_TID);
 							String name = c.getString(TAG_NAME);
-							Log.e("city name", name);
 							City newCity = new City(id, name);
 							
 							//ajout pour affichage
@@ -231,7 +246,7 @@ public class FragmentCityList extends ListFragment {
 							
 							int tId = t.getInt(TAG_TID);
 							String tName = t.getString(TAG_NAME);
-							Log.e("type name", tName);
+							Log.d("type name", tName);
 							PlaceType newType = new PlaceType(tId, tName);
 
 							

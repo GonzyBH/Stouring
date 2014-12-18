@@ -23,7 +23,6 @@ public class CityListActivity extends DrawerActivity {
 		//this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
 		setContentView(R.layout.citylist);
-		Log.i("testMaker", "MAKER LIST");
 		
 		session = new SessionManager(getApplicationContext());
 		/*if (session.isLoggedIn()) {
