@@ -7,10 +7,10 @@
     <string name="text_empty">Aucune donnée chargée. Veuillez vérifier votre connexion internet et réessayer.</string>
     <string name="touringlistactivity_name">Ville</string>
     <string name="newconnexionactivity_name">NewConnexion</string>
-    <string name="tpdisplayer_name">Vue du Restaurant</string>
+    <string name="tpdisplayer_name">Résumé établissement</string>
     <string name="tpmodifier_name">Mon espace établissement</string>
     <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">Réglages</string>
     <string name="app_desc">Smart touring and shopping</string>
     <string name="default_lorem">Lorem ipsum dolor sit YOLO amet</string>
     <string name="storetype_prompt">Choisissez le type de commerce</string>
