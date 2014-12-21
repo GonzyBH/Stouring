@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class HomeActivity extends DrawerActivity {
 
@@ -72,9 +73,11 @@ public class HomeActivity extends DrawerActivity {
 			@Override
 			public void onClick(View v) {
 			
-				Intent launchTest = new Intent(HomeActivity.this,
+				Toast.makeText(getBaseContext(), "Unused at this time", Toast.LENGTH_LONG).show();
+
+				/*Intent launchTest = new Intent(HomeActivity.this,
 						ListPlacesActivity.class);
-				startActivity(launchTest);
+				startActivity(launchTest);*/
 			}
 		});
 		
