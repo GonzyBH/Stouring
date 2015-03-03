@@ -234,6 +234,39 @@ public class TouringPlaceDatabaseHelper extends SQLiteOpenHelper {
 	/**
 	 * retrieve all items from the database
 	 */
+	public ArrayList<String> getAllCitiesNames() {
+		// initialize the list
+		ArrayList<String> citiesNames = new ArrayList<String>();
+		// obtain a readable database
+		SQLiteDatabase db = getReadableDatabase();
+		
+//		ServiceHandler sh = new ServiceHandler();
+//		String jsonStr = sh.makeServiceCall(url, ServiceHandler.GET);
+		
+		// send query
+		Cursor cursor = db.query(TABLE_CITIES, new String[] {
+				COLUMN_ID, COLUMN_NAME}, null, null, null, null, null, null); // get
+																			// all
+																			// rows
+		if (cursor != null) {
+			// add items to the list
+			for (cursor.moveToFirst(); cursor.isAfterLast() == false; cursor
+					.moveToNext()) {
+				citiesNames.add(new City(cursor.getInt(0), cursor.getString(1)).getName());
+			}
+			// close the cursor
+			cursor.close();
+		}
+		// close the database connection
+		db.close();
+		// return the list
+		return citiesNames;
+	}
+	
+	
+	/**
+	 * retrieve all items from the database
+	 */
 	public ArrayList<PlaceType> getAllPlaceTypes() {
 		// initialize the list
 		ArrayList<PlaceType> types = new ArrayList<PlaceType>();
@@ -428,10 +461,8 @@ public class TouringPlaceDatabaseHelper extends SQLiteOpenHelper {
 	/**
 	 * retrieve all items from the database
 	 */
-	public ArrayList<TouringPlace> getAllByCityAndType(String pCity, String pType) {
-		
-		Log.e("dbhelper",pType);
-		Log.e("dbhelper", pCity);
+	public ArrayList<TouringPlace> getAllByCityAndType(String pCity, PlaceType placeType) {
+
 		// initialize the list
 		ArrayList<TouringPlace> items = new ArrayList<TouringPlace>();
 		// obtain a readable database
@@ -443,7 +474,7 @@ public class TouringPlaceDatabaseHelper extends SQLiteOpenHelper {
 		// send query
 		Cursor cursor = db.query(TABLE_TOURING_PLACE, new String[] {
 				COLUMN_ID, COLUMN_NAME, COLUMN_RATING, COLUMN_TYPE, COLUMN_IMAGE, COLUMN_CITY, COLUMN_LATITUDE,
-				COLUMN_LONGITUDE }, COLUMN_CITY + " = ? AND " + COLUMN_TYPE + " = ?", new String[]{pCity, pType}, null, null, null, null); 
+				COLUMN_LONGITUDE }, COLUMN_CITY + " = ? AND " + COLUMN_TYPE + " = ?", new String[]{pCity, placeType.getName()}, null, null, null, null); 
 																			
 		if (cursor != null) {
 			// add items to the list

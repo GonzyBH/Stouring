@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class HomeActivity extends DrawerActivity {
 
@@ -37,18 +38,18 @@ public class HomeActivity extends DrawerActivity {
 			public void onClick(View v) {
 				
 				if(settings.contains("myCity")){
-					Intent launchMaVille = new Intent(HomeActivity.this,
-							MaVilleActivity.class);
-					startActivity(launchMaVille);
-					
+					Intent intent = new Intent(getBaseContext(),
+							ListPlacesActivity.class);
+					intent.putExtra("cityName", settings.getString("myCity", "Paris"));
+					startActivity(intent);
 				}
 				else{
-					Intent launchMaVilleUndef = new Intent(HomeActivity.this,
-							MaVilleUndefActivity.class);
-					startActivity(launchMaVilleUndef);
+					Intent launchMaVille = new Intent(HomeActivity.this,
+							MaVilleActivity.class);
+					startActivity(launchMaVille);	
 				}
-			
 				
+							
 			}
 		});
 		

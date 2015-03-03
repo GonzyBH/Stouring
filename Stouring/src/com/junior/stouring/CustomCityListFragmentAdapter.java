@@ -21,14 +21,12 @@ public class CustomCityListFragmentAdapter extends ArrayAdapter<City>{
 	}
 	
 	 private static class ViewHolder {
-		 ImageView ivIcon;
 		 TextView tvName;
 		 }
 	   
 	 @Override
 	 public int getCount() {
 		 int s = mCities.size();
-		 Log.e("Nombre de villes adapter",""+s);
 		 return s;
 		
 	 }
@@ -45,7 +43,6 @@ public class CustomCityListFragmentAdapter extends ArrayAdapter<City>{
 			 convertView = inflater.inflate(R.layout.row_activity_fragment_citylist, parent, false);
 			 // initialize the view holder
 			 viewHolder = new ViewHolder();
-			 viewHolder.ivIcon = (ImageView) convertView.findViewById(R.id.icon);
 			 viewHolder.tvName = (TextView) convertView.findViewById(R.id.firstrow);
 			 convertView.setTag(viewHolder);
 		 

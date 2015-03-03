@@ -25,6 +25,8 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 public class FragmentCityList extends ListFragment {
+	
+	public static final String PREFS_NAME = "UserPrefs";
 
 	private static String url = "http://api.stouring.mobi/?db_api=place&request=ALL_PLACES";
 
@@ -65,6 +67,8 @@ public class FragmentCityList extends ListFragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
+		
+		
 		return inflater.inflate(R.layout.activity_fragment_touringlist,
 				container, false);
 
@@ -80,7 +84,15 @@ public class FragmentCityList extends ListFragment {
 	public void onViewCreated(View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
 
-		new GetPlaces(getActivity().getApplicationContext()).execute();
+		dbHelper = new TouringPlaceDatabaseHelper(getActivity());
+		items = dbHelper.getAllCities();
+		// initialize and set the list adapter
+					mAdapter = new CustomCityListFragmentAdapter(getActivity(),
+							items);
+					setListAdapter(mAdapter);
+					// remove the dividers from the ListView of the ListFragment
+					getListView().setDivider(null);
+//		new GetPlaces(getActivity().getApplicationContext()).execute();
 
 
 	}
@@ -103,6 +115,8 @@ public class FragmentCityList extends ListFragment {
 
 
 	private class GetPlaces extends AsyncTask<Void, Void, Void> {
+		
+		
 		
 		Context mContext;
 		public GetPlaces (Context context){
@@ -151,6 +165,9 @@ public class FragmentCityList extends ListFragment {
 			items = new ArrayList<City>();
 			dbHelper = new TouringPlaceDatabaseHelper(getActivity());
 			// Creating service handler class instance
+			
+			
+			
 
 
 			Calendar cal = Calendar.getInstance();

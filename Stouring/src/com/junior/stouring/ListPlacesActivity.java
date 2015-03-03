@@ -45,9 +45,10 @@ public class ListPlacesActivity extends DrawerActivity implements ActionBar.TabL
 //        TouringPlace mTouringPlace = mDatabaseHelper.getTouringPlaceFromDB(mTouringPlaceId);
         tabInitialization(mCity, pT);
         
-	}
+
         
-	
+	}
+
 	public void tabInitialization(City mC, ArrayList<PlaceType> pT) {
 		
 		// Initilization

@@ -1,20 +1,30 @@
 package com.junior.stouring;
 
+import java.util.ArrayList;
+
 import com.junior.stouring.drawer.DrawerActivity;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ListAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class ProfileActivity extends DrawerActivity {
+	
+	TouringPlaceDatabaseHelper dbHelper;
+	ArrayList<String> citiesNames;
 
 	public static final String PREFS_NAME = "UserPrefs";
+	public SharedPreferences settings = null ;
 
 	@Override
 	protected void onCreate(Bundle arg0) {
@@ -22,7 +32,7 @@ public class ProfileActivity extends DrawerActivity {
 		setContentView(R.layout.activity_profile);
 
 		// Restore preferences
-		final SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+		settings = getSharedPreferences(PREFS_NAME, 0);
 		
 
 		final TextView addressContent = (TextView) findViewById(R.id.addressContent);
@@ -32,7 +42,7 @@ public class ProfileActivity extends DrawerActivity {
 		name.setText(settings.getString("name", "John Doe"));
 
 		final TextView myCity = (TextView) findViewById(R.id.myCity);
-		myCity.setText(settings.getString("myCity", "Ici c'est Paris maggle"));
+		myCity.setText(settings.getString("myCity", "Aucune ville définie"));
 
 
 		addressContent.setOnClickListener(new View.OnClickListener(){
@@ -45,6 +55,7 @@ public class ProfileActivity extends DrawerActivity {
 
 
 		});
+		
 
 
 
@@ -63,6 +74,8 @@ public class ProfileActivity extends DrawerActivity {
 
 			@Override
 			public void onClick(View arg0) {
+				dbHelper = new TouringPlaceDatabaseHelper(getBaseContext());
+				citiesNames = dbHelper.getAllCitiesNames();
 				showAlert("Choisir ma ville", myCity, "myCity",settings);
 			}
 
@@ -72,6 +85,16 @@ public class ProfileActivity extends DrawerActivity {
 
 	}
 
+	
+	@Override
+	public void onResume()
+	    {  // After a pause OR at startup
+	    super.onResume();
+	    //Refresh your stuff here
+	    final TextView myCity = (TextView) findViewById(R.id.myCity);
+		myCity.setText(settings.getString("myCity", "Aucune ville définie"));
+	     }
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -92,9 +115,8 @@ public class ProfileActivity extends DrawerActivity {
 	}
 
 
-	public void showAlert(String title, final TextView container, final String containerStr, SharedPreferences settings){
-		
-		String content = container.getText().toString();
+public void showAlert(String title, final TextView container, final String containerStr, SharedPreferences settings){
+
 		
 		final SharedPreferences.Editor editor = settings.edit();
 
@@ -104,30 +126,29 @@ public class ProfileActivity extends DrawerActivity {
 		// set title
 		alertDialogBuilder.setTitle(title);
 
-		// Set an EditText view to get user input 
-		final EditText input = new EditText(ProfileActivity.this);
-		input.setText(content);
-		alertDialogBuilder.setView(input);
 
 		// set dialog message
-		alertDialogBuilder
-		.setCancelable(false)
-		.setPositiveButton("OK",new DialogInterface.OnClickListener() {
-			public void onClick(DialogInterface dialog,int id) {
-				String newTxt = input.getText().toString();
-				container.setText(newTxt);
-				editor.putString(containerStr, newTxt);
+		ListAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, citiesNames);
+		alertDialogBuilder.setAdapter(adapter, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+            // The 'which' argument contains the index position
+            // of the selected item
+            	editor.putString(containerStr, citiesNames.get(which));
 				editor.commit();
+				Toast toast = Toast.makeText(getApplicationContext(), citiesNames.get(which), Toast.LENGTH_SHORT);
+				toast.show();
+				Intent intent = new Intent(getBaseContext(),
+						ListPlacesActivity.class);
+				intent.putExtra("cityName", citiesNames.get(which));
 
-			}
-		})
-		.setNegativeButton("Annuler",new DialogInterface.OnClickListener() {
-			public void onClick(DialogInterface dialog,int id) {
-				// if this button is clicked, just close
-				// the dialog box and do nothing
-				dialog.cancel();
-			}
+				startActivity(intent);
+            	
+        }
 		});
+		
+		alertDialogBuilder
+		.setCancelable(true);
+
 
 		// create alert dialog
 		AlertDialog alertDialog = alertDialogBuilder.create();
@@ -136,5 +157,4 @@ public class ProfileActivity extends DrawerActivity {
 		alertDialog.show();
 
 	}
-
 }
